@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/elgun/Desktop/Advanced-Option-Pricing-and-Volatility-Analysis/output/vol'
+relocations:     []
+...
