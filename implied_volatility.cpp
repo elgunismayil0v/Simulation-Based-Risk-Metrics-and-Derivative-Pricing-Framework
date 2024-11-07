@@ -59,9 +59,9 @@ double Newton_Raphson(const implied_volatility& params, const string& type_of_op
         if (fabs(diff) < tol) return sigma;  // Converged
 
         double vega_value = Vega(params, sigma);
-        if (vega_value < 1e-10) throw runtime_error("Vega too small, Newton-Raphson method failed.");
+        if (vega_value < 1e-16) throw runtime_error("Vega too small, Newton-Raphson method failed.");
 
-        sigma += diff / vega_value;  // Update sigma
+        sigma -= diff / vega_value;  // Update sigma
     }
     throw runtime_error("Newton-Raphson did not converge within the maximum number of iterations.");
 }
@@ -72,7 +72,6 @@ double Newton_Raphson(const implied_volatility& params, const string& type_of_op
 
 int main() {
     implied_volatility params;
-    double sigma;
     double market_value;
     string type_of_option;
     cout << "Write type of option \n";
@@ -81,9 +80,7 @@ int main() {
     cin >> params.S_0;
     cout << "Write Strike price \n";
     cin >> params.K;
-    cout << "Write volatility of Stock \n";
-    cin >> sigma;
-    cout << "Write time to maturity of option \n";
+    cout << "Write maturity of Stock \n";
     cin >> params.T;
     cout << "Write interest rate \n";
     cin >> params.interest;
