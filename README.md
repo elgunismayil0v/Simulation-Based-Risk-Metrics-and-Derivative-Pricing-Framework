@@ -1,19 +1,23 @@
 
-# Heston Model with Monte Carlo Simulation
+# Heston and LMM_DD Models with Monte Carlo Simulation
 
-This project implements the **Heston stochastic volatility model** and **Monte Carlo simulation** for pricing European call options. It also provides calculations for **Expected Exposure (EE)**, **Potential Future Exposure (PFE)**, and **Credit Valuation Adjustment (CVA)** using simulated asset price paths.
+This project implements the **Heston stochastic volatility model** and the **LMM_DD model** for financial derivatives pricing using Monte Carlo simulation. It also provides risk metrics calculations such as **Expected Exposure (EE)**, **Potential Future Exposure (PFE)**, and **Credit Valuation Adjustment (CVA)** for both models.
 
 ## Features
 
-- **Heston Model Simulation**:
-  - Simulates asset price paths using the Heston model, incorporating stochastic volatility.
-  - Implements the Cox-Ingersoll-Ross (CIR) process for variance dynamics.
-- **Monte Carlo Pricing**:
-  - Computes European call option prices via Monte Carlo methods.
-- **Risk Metrics Calculations**:
-  - **Expected Exposure (EE)**: Average exposure over time.
-  - **Potential Future Exposure (PFE)**: Exposure at a specified confidence level.
-  - **Credit Valuation Adjustment (CVA)**: Measures counterparty credit risk.
+### Heston Model
+- Simulates asset price paths using the Heston model with stochastic volatility.
+- Implements the Cox-Ingersoll-Ross (CIR) process for variance dynamics.
+- Calculates European call option prices via Monte Carlo methods.
+  
+### LMM_DD Model
+- Simulates forward rates using the LMM_DD model.
+- Calculates the prices of caplets and swap options.
+
+### Risk Metrics Calculations
+- **Expected Exposure (EE)**: Average exposure over time.
+- **Potential Future Exposure (PFE)**: Exposure at a specified confidence level.
+- **Credit Valuation Adjustment (CVA)**: Measures counterparty credit risk.
 
 ## Prerequisites
 
@@ -29,61 +33,80 @@ This project implements the **Heston stochastic volatility model** and **Monte C
    ```
 2. Compile the program:
    ```bash
-   g++ -std=c++11 Heston_Model_with_Monte_Carlo_simulation.cpp -o HestonModel
+   g++ *.cpp -o out
    ```
 3. Run the executable:
    ```bash
-   ./HestonModel
+   ./out
    ```
 
 ## Input Parameters
 
-Key parameters used in the simulation (modifiable within the code):
+### Heston Model Parameters
+- Mean reversion rate (\( \kappa \)): 0.005
+- Volatility of variance (\( \gamma \)): 0.05
+- Correlation (\( \rho \)): -0.7
+- Long-term variance mean (\( \bar{v} \)): 0.04
+- Initial variance (\( v_0 \)): 0.04
+- Risk-free rate (\( r \)): 0.05
+- Initial stock price (\( S_0 \)): 100
+- Strike price (\( K \)): 100
 
-- **Simulation**:
-  - Number of paths: 1000
-  - Time steps: 1000
-  - Maturity (\( T \)): 1 year
-- **Market Data**:
-  - Risk-free rate (\( r \)): 0.05
-  - Initial stock price (\( S_0 \)): 100
-  - Strike price (\( K \)): 100
-- **Heston Model Parameters**:
-  - Mean reversion rate (\( \kappa \)): 2.0
-  - Volatility of variance (\( \gamma \)): 0.8
-  - Correlation (\( 
-ho \)): -0.9
-  - Long-term variance mean (\( ar{v} \)): 0.66
-  - Initial variance (\( v_0 \)): 0.04
-- **Risk Metrics Parameters**:
-  - Confidence level for PFE: 95%
-  - Recovery rate: 40%
-  - Hazard rate: 2%
+### LMM_DD Model Parameters
+- Mean reversion rate (\( \kappa \)): 0.005
+- Volatility of variance (\( \gamma \)): 0.05
+- Correlation (\( \rho \)): 0.0
+- Long-term variance mean (\( \bar{v} \)): 0.04
+- Initial variance (\( v_0 \)): 0.04
+- Risk-free rate (\( r \)): 0.0
+- Initial forward rate (\( f_0 \)): 0.1
+- Strike rate (\( K \)): 0.03
+- Number of paths: 1000
+- Time steps: 252
 
 ## Output
 
-After execution, the program provides the following metrics:
+The program provides the following metrics for both models:
 
-- **Mean Expected Exposure (EE)**
-- **Mean Potential Future Exposure (PFE)**
+- **Caplet Price** (LMM_DD)
+- **Swap Option Price** (LMM_DD)
+- **European Call Option Price** (Heston)
+- **Discounted Expected Exposure (EE)**
+- **Potential Future Exposure (PFE)**
 - **Credit Valuation Adjustment (CVA)**
-- **European Call Option Price**
+- **Risky Derivative Prices**:
+  - Caplet Price minus CVA
+  - Swap Option Price minus CVA
+  - European Call Price minus CVA
 
-Sample output:
-
+### Sample Output
 ```
-Mean Expected Exposure (EE): 4.5678
-Mean Potential Future Exposure (PFE): 6.1234
-Credit Valuation Adjustment (CVA): 0.7890
-European Call Option Price: 10.3456
+Caplet price: 0.0245
+Swap option price: 0.0357
+Discounted Expected Exposure: 0.0012
+Potential Future Exposure: 0.0025
+CVA: 0.0008
+Risky Derivative Price of Caplet: 0.0237
+Risky Derivative Price of Swap Option: 0.0349
+European call price: 10.1234
+Discounted Expected Exposure: 4.5678
+Potential Future Exposure: 6.1234
+CVA: 0.7890
+Risky Derivative Price of European Call Option: 9.3344
 ```
 
 ## Project Structure
 
-- `Heston` Class:
+- **Heston Class**:
   - Implements variance simulation using the CIR model.
   - Simulates asset price paths under the Heston model.
   - Calculates European call option prices.
-- `RiskMetrics` Class:
+- **LMM_DD Class**:
+  - Simulates forward rates.
+  - Calculates caplet and swap option prices.
+- **RiskMetrics Class**:
   - Computes risk measures (EE, PFE, CVA) from simulated paths.
 
+## License
+
+This project is licensed under the MIT License.
