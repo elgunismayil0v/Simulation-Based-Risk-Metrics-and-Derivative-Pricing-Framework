@@ -22,17 +22,17 @@ class Heston {
 
 class RiskMetrics{
     public:
-    vector<double> CalculateExpectedExposure(const vector<vector<double> >& paths);
+    vector<double> CalculateDiscountedExpectedExposureWithStrike(const vector<vector<double> >& paths, const double K, const double r, const double dt);
     vector<double> CalculatePotentialFutureExposure(const vector<vector<double> >& paths,
-     double confidence_level);
-    double CalculateCVA(const vector<double>& EE, double recovery_rate, double hazard_rate, double r, double T, int NoOfSteps);
+    double confidence_level, double K);
+    double CalculateCVA(const vector<double>& EE, double recovery_rate, double hazard_rate, double T, int NoOfSteps);
 };
 
 vector<double> Heston::CIR_sample(int NoOfPaths, double kappa, double gamma, double vbar, double s, double t, double v_s)
 {
     // Parameters for the non-central chi-squared distribution
     double delta = 4.0 * kappa * vbar / (gamma * gamma);
-    double exp_factor = std::exp(-kappa * (t - s));
+    double exp_factor = exp(-kappa * (t - s));
     double c = (gamma * gamma * (1.0 - exp_factor)) / (4.0 * kappa);
     double lambda = (4.0 * kappa * v_s * exp_factor) / (gamma * gamma * (1.0 - exp_factor));
 
@@ -157,25 +157,30 @@ double Heston:: CalculateEuropeanCallPrice(
     return exp(-r * T) * avg_payoff;
 }
 
-vector<double> RiskMetrics::CalculateExpectedExposure(const vector<vector<double> >& paths) {
-    int NoOfSteps = paths[0].size(); // Number of time steps
-    int NoOfPaths = paths.size();   // Number of paths
-    vector<double> EE(NoOfSteps, 0.0);
-
-    // Calculate EE for each time step
-    for (int step = 0; step < NoOfSteps; ++step) {
-        double exposure = 0.0;
-        for (int i = 0; i < NoOfPaths; ++i) {
-            exposure += max(paths[i][step], 0.0); // Max(S_t, 0)
-        }
-        EE[step] = exposure / NoOfPaths; // Average over all paths
+vector<double> RiskMetrics::CalculateDiscountedExpectedExposureWithStrike(const vector<vector<double> >& paths, const double K, const double r, const double dt) {
+    if (paths.empty() || paths[0].empty()) {
+        throw std::invalid_argument("Input paths must be non-empty.");
     }
 
-    return EE;
+    int NoOfSteps = paths[0].size();
+    int NoOfPaths = paths.size();
+    vector<double> DiscountedEE(NoOfSteps, 0.0);
+
+    // Calculate discounted EE
+    for (int step = 0; step < NoOfSteps; ++step) {
+        double sum_of_positive_exposures = 0.0;
+        for (int i = 0; i < NoOfPaths; ++i) {
+            sum_of_positive_exposures += max(paths[i][step] - K, 0.0);
+        }
+        double discount_factor = exp(-r * step * dt); // Discount factor
+        DiscountedEE[step] = (sum_of_positive_exposures / NoOfPaths) * discount_factor;
+    }
+
+    return DiscountedEE;
 }
 
 vector<double> RiskMetrics::CalculatePotentialFutureExposure(
-    const vector<vector<double> >& paths, double confidence_level) {
+    const vector<vector<double> >& paths, double confidence_level, double K) {
     int NoOfSteps = paths[0].size(); // Number of time steps
     int NoOfPaths = paths.size();   // Number of paths
     vector<double> PFE(NoOfSteps, 0.0);
@@ -186,7 +191,7 @@ vector<double> RiskMetrics::CalculatePotentialFutureExposure(
 
         // Collect exposures at this time step
         for (int i = 0; i < NoOfPaths; ++i) {
-            exposures[i] = max(paths[i][step], 0.0);
+            exposures[i] = max(paths[i][step] - K, 0.0);
         }
 
         // Sort exposures to compute quantile
@@ -198,68 +203,20 @@ vector<double> RiskMetrics::CalculatePotentialFutureExposure(
     return PFE;
 }
 
-double RiskMetrics ::CalculateCVA(const vector<double>& EE, double recovery_rate, double hazard_rate, double r, double T, int NoOfSteps) {
+double RiskMetrics ::CalculateCVA(const vector<double>& EE, double recovery_rate, double hazard_rate, double T, int NoOfSteps) {
     double dt = T / NoOfSteps;
     double CVA = 0.0;
 
     for (int step = 0; step < NoOfSteps; ++step) {
         double t = step * dt;
-        double discount_factor = exp(-r * t);
         double PD_t = 1 - exp(-hazard_rate * t);
-        CVA += (1 - recovery_rate) * EE[step] * PD_t * discount_factor * dt;
+        CVA += (1 - recovery_rate) * EE[step] * PD_t * dt;
     }
 
     return CVA;
 }
 
-int main() {
-    int NoOfPaths = 1000;  // Number of paths
-    int NoOfSteps = 1000; // Number of time steps
-    double T = 1.0;        // Maturity
-    double r = 0.05;       // Risk-free rate
-    double S_0 = 100.0;    // Initial stock price
-    double K = 100;        // Strike price
-    double kappa = 2.0;    // Mean reversion rate
-    double gamma = 0.8;    // Volatility of variance
-    double rho = -0.9;     // Correlation
-    double vbar = 0.66;    // Long-term variance mean
-    double v0 = 0.04;      // Initial variance
-    double confidence_level = 0.95; // For PFE
-    double recovery_rate = 0.4;     // Recovery rate for CVA
-    double hazard_rate = 0.02;      // Hazard rate for counterparty
 
-    // Instantiate Heston and RiskMetrics objects
-    Heston hestonModel;
-    RiskMetrics riskMetrics;
-
-    // Generate Heston paths
-    vector<vector<double> > paths = hestonModel.GeneratePathsHestonAES(
-        NoOfPaths, NoOfSteps, T, r, S_0, kappa, gamma, rho, vbar, v0);
-
-    // Calculate Expected Exposure
-    vector<double> EE = riskMetrics.CalculateExpectedExposure(paths);
-
-    // Calculate European Call Option price
-    double call_price = hestonModel.CalculateEuropeanCallPrice(paths, K, r, T);
-
-    // Calculate Potential Future Exposure
-    vector<double> PFE = riskMetrics.CalculatePotentialFutureExposure(paths, confidence_level);
-
-    // Calculate Credit Valuation Adjustment
-    double CVA = riskMetrics.CalculateCVA(EE, recovery_rate, hazard_rate, r, T, NoOfSteps);
-
-    // Calculate mean values
-    double mean_EE = accumulate(EE.begin(), EE.end(), 0.0) / EE.size();
-    double mean_PFE = accumulate(PFE.begin(), PFE.end(), 0.0) / PFE.size();
-
-    // Output results
-    cout << "Mean Expected Exposure (EE): " << mean_EE << endl;
-    cout << "Mean Potential Future Exposure (PFE): " << mean_PFE << endl;
-    cout << "Credit Valuation Adjustment (CVA): " << CVA << endl;
-    cout << "European Call Option Price: " << call_price << endl;
-
-    return 0;
-}
 
 
 
