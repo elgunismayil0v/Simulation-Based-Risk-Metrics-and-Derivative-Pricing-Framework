@@ -12,7 +12,7 @@ class LMM_DD{
     public:
     vector<vector<double> > Forward_rates(int NoOfPaths, int NoOfSteps, double T,
     double r, double S_0, double kappa,
-    double gamma, double rho, double vbar, double v0);
+    double gamma, double rho, double vbar, double v0, double beta, double sigma);
     double computeDiscountFactor(const std::vector<double>& forwardRates);
     double Caplet_price(const vector<vector<double> >& paths, double K);
     double Swapoption_price(const std::vector<double>& forwardRates, double K);
@@ -21,10 +21,13 @@ class LMM_DD{
 
 vector<vector<double> > LMM_DD :: Forward_rates(int NoOfPaths, int NoOfSteps, double T,
      double r, double S_0, double kappa,
-    double gamma, double rho, double vbar, double v0) {
-    Heston Heston; 
+    double gamma, double rho, double vbar, double v0, double beta, double sigma) {
+    Heston Heston;
+    double gamma_hat = beta * gamma * sigma;
+    double v_bar_hat = pow(beta, 2) * vbar * pow(sigma, 2);
+    double v0_hat = pow(beta, 2) * v0 * pow(sigma, 2); 
+    vector<vector<double> > forwardRates = Heston.GeneratePathsHestonAES(NoOfPaths, NoOfSteps, T, r, S_0, kappa, gamma_hat, rho, v_bar_hat, v0_hat);
 
-    vector<vector<double> > forwardRates = Heston.GeneratePathsHestonAES(NoOfPaths, NoOfSteps, T, r, S_0, kappa, gamma, rho, vbar, v0);
     return forwardRates;
 };
 
@@ -58,4 +61,5 @@ double LMM_DD::Swapoption_price(const std::vector<double>& forwardRates, double 
 
     return accumulate(payoff.begin(), payoff.end(), 0.0) / forwardRates.size();
 }
+
 

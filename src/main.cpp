@@ -22,12 +22,14 @@ int main() {
     double T = 1.0;
     int NoOfPaths = 1000;
     int NoOfSteps = 252;
+    double beta = 0.5;
+    double sigma = 0.1;
 
     // LMM parameters
     double K = 0.03;
 
     // Generate forward rates using the Heston model
-    vector<vector<double> > forwardRates = lmm_dd.Forward_rates(NoOfPaths, NoOfSteps, T, r, f_0, kappa, gamma, rho, vbar, v0);
+    vector<vector<double> > forwardRates = lmm_dd.Forward_rates(NoOfPaths, NoOfSteps, T, r, f_0, kappa, gamma, rho, vbar, v0, beta, sigma);
 
     // Calculate caplet price
     double capletPrice = lmm_dd.Caplet_price(forwardRates, K);

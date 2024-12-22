@@ -10,7 +10,7 @@ public:
     std::vector<std::vector<double> > Forward_rates(
         int NoOfPaths, int NoOfSteps, double T,
         double r, double S_0, double kappa,
-        double gamma, double rho, double vbar, double v0);
+        double gamma, double rho, double vbar, double v0, double beta, double sigma);
 
     // Function to compute the discount factor based on forward rates
     double computeDiscountFactor(const std::vector<double>& forwardRates);
