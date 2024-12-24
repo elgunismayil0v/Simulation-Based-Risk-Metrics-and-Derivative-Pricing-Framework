@@ -149,12 +149,12 @@ double Heston:: CalculateEuropeanCallPrice(
     // Calculate payoff for each path
     for (int i = 0; i < NoOfPaths; ++i) {
         double S_T = paths[i].back(); // Final price at maturity
-        payoffs[i] = max(S_T - K, 0.0);
+        payoffs[i] = max(S_T - K, 0.0) * exp(-r * T); // Discounted payoff
     }
 
     // Average payoff and discount
     double avg_payoff = accumulate(payoffs.begin(), payoffs.end(), 0.0) / NoOfPaths;
-    return exp(-r * T) * avg_payoff;
+    return avg_payoff;
 }
 
 vector<double> RiskMetrics::CalculateDiscountedExpectedExposureWithStrike(const vector<vector<double> >& paths, const double K, const double r, const double dt) {
