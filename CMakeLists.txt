@@ -5,7 +5,7 @@ project(LongstaffSchwartzLSM)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Include Eigen3 directory (scoped to this target)
+# Add the executable with source files
 add_executable(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework
     src/main.cpp
     src/Heston_Model_with_Monte_Carlo_simulation.cpp
@@ -13,12 +13,13 @@ add_executable(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework
     src/Longstaff_Schwartz_LSM.cpp
 )
 
-# Add header directories
+# Specify the path to the include directory
 target_include_directories(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework PRIVATE
-    /Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/eigen-3.4.0/
+    ${CMAKE_SOURCE_DIR}/include/eigen-3.4.0 # Relative path for Eigen3
+    ${CMAKE_SOURCE_DIR}/include            # Include custom headers in the 'include' folder
 )
 
-# Add compiler warning flags
+# Add compiler warning flags for better diagnostics
 target_compile_options(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework PRIVATE
     -Wall -Wextra
 )
