@@ -1,5 +1,6 @@
 #include "HestonModel.h"
 #include "lmm.h"
+#include "Longstaff_Schwartz.h"
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -20,8 +21,8 @@ int main() {
     double r = 0.0;
     double f_0 = 0.1;
     double T = 1.0;
-    int NoOfPaths = 1000;
-    int NoOfSteps = 252;
+    int NoOfPaths = 10000;
+    int NoOfSteps = 1000;
     double beta = 0.5;
     double sigma = 0.1;
 
@@ -56,7 +57,7 @@ int main() {
     double K_option = 100.0;
     double r_option = 0.05;
     double rho_option = - 0.7;
-    vector< vector < double > > paths = Heston.GeneratePathsHestonAES(NoOfPaths, NoOfSteps, T, r_option, S_0, kappa, gamma, rho, vbar, v0);
+    vector< vector < double > > paths = Heston.GeneratePathsHestonAES(NoOfPaths, NoOfSteps, T, r_option, S_0, kappa, gamma, rho_option, vbar, v0);
     double europeanCallPrice = Heston.CalculateEuropeanCallPrice(paths, K_option, r, T);
     cout << "European call price: " << europeanCallPrice << endl;
 
@@ -70,6 +71,23 @@ int main() {
     double CVA_h = riskMetrics.CalculateCVA(EE_h, 0.4, 0.02, T, NoOfSteps);
     cout << "CVA: " << CVA_h << endl;
     cout << "Risky Derivative Price of European Call Option : " << europeanCallPrice - CVA_h << endl;
+
+    // Longstaff-Schwartz algorithm
+    Longstaff_Schwartz_LSM LSM;
+    vector<vector<double> > paths_lsm = LSM.Paths(NoOfPaths, NoOfSteps, T, r_option, S_0, kappa, gamma, rho, vbar, v0);
+    double optionValues = LSM.LSM(paths_lsm, K_option, r, T);
+    cout << "Longstaff-Schwartz price: " << optionValues << endl;
+    // Calculate RiskMetrics of the Longstaff-Schwartz model
+    vector<double> EE_lsm = riskMetrics.CalculateDiscountedExpectedExposureWithStrike(paths_lsm, K_option, r, 1.0 / NoOfSteps);
+    double mean_EE_lsm = accumulate(EE_lsm.begin(), EE_lsm.end(), 0.0) / EE_lsm.size();
+    cout << "Discounted Expected Exposure: " << mean_EE_lsm << endl;
+    vector<double> PFE_lsm = riskMetrics.CalculatePotentialFutureExposure(paths_lsm, 0.95, K_option);
+    double mean_PFE_lsm = accumulate(PFE_lsm.begin(), PFE_lsm.end(), 0.0) / PFE_lsm.size();
+    cout << "Potential Future Exposure: " << mean_PFE_lsm << endl;
+    double CVA_lsm = riskMetrics.CalculateCVA(EE_lsm, 0.4, 0.02, T, NoOfSteps);
+    cout << "CVA: " << CVA_lsm << endl;
+    cout << "Risky Derivative Price of Longstaff-Schwartz : " << optionValues - CVA_lsm << endl;
+
 
     return 0;
 }
