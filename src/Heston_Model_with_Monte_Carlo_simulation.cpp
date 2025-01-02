@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <boost/math/distributions/non_central_chi_squared.hpp>
+#include <omp.h>
 using namespace std;
 
 class Heston {
@@ -45,6 +46,7 @@ vector<double> Heston::CIR_sample(int NoOfPaths, double kappa, double gamma, dou
     vector<double> samples(NoOfPaths);
 
     // Generate samples using Boost's non-central chi-squared distribution
+    #pragma omp parallel for
     for (int i = 0; i < NoOfPaths; ++i) {
         boost::math::non_central_chi_squared_distribution<double> dist(delta, lambda);
         double uniform_sample = uniform_dist(generator);
@@ -78,12 +80,14 @@ vector<vector<double> > Heston ::GeneratePathsHestonAES( int NoOfPaths, int NoOf
     double dt = T / static_cast<double>(NoOfSteps);
 
     // Initial conditions
+    #pragma omp parallel for
     for (int i = 0; i < NoOfPaths; ++i) {
         V[i][0] = v0;
         X[i][0] = log(S_0);
     };
 
     // Generate paths
+    #pragma omp parallel for
     for (int step = 0; step < NoOfSteps; ++step) {
         // Generate random samples
         for (int i = 0; i < NoOfPaths; ++i) {
@@ -99,6 +103,7 @@ vector<vector<double> > Heston ::GeneratePathsHestonAES( int NoOfPaths, int NoOf
         }
 
         // Update Wiener process
+        #pragma omp parallel for
         for (int i = 0; i < NoOfPaths; ++i) {
             W1[i][step + 1] = W1[i][step] + sqrt(dt) * Z1[i][step];
         }
@@ -107,11 +112,13 @@ vector<vector<double> > Heston ::GeneratePathsHestonAES( int NoOfPaths, int NoOf
         vector<double> next_v = CIR_sample(NoOfPaths, kappa, gamma, vbar, 0.0, dt, V[0][step]);
 
         // Update variance for each path
+        #pragma omp parallel for
         for (int i = 0; i < NoOfPaths; ++i) {
             V[i][step + 1] = next_v[i]; // Assign each path's next variance
         }
 
         // Update log price process
+        #pragma omp parallel for
         for (int i = 0; i < NoOfPaths; ++i) {
             double k0 = (r - rho / gamma * kappa * vbar) * dt;
             double k1 = (rho * kappa / gamma - 0.5) * dt - rho / gamma;
@@ -128,6 +135,7 @@ vector<vector<double> > Heston ::GeneratePathsHestonAES( int NoOfPaths, int NoOf
 
     // Compute exponent and store results
     vector<vector<double> > S(NoOfPaths, vector<double>(NoOfSteps + 1));
+    #pragma omp parallel for
     for (int i = 0; i < NoOfPaths; ++i) {
         for (int step = 0; step <= NoOfSteps; ++step) {
             S[i][step] = exp(X[i][step]);
@@ -145,6 +153,7 @@ double Heston:: CalculateEuropeanCallPrice(
     vector<double> payoffs(NoOfPaths);
 
     // Calculate payoff for each path
+    #pragma omp parallel for
     for (int i = 0; i < NoOfPaths; ++i) {
         double S_T = paths[i].back(); // Final price at maturity
         payoffs[i] = max(S_T - K, 0.0) * exp(-r * T); // Discounted payoff
@@ -165,6 +174,7 @@ vector<double> RiskMetrics::CalculateDiscountedExpectedExposureWithStrike(const 
     vector<double> DiscountedEE(NoOfSteps, 0.0);
 
     // Calculate discounted EE
+    #pragma omp parallel for
     for (int step = 0; step < NoOfSteps; ++step) {
         double sum_of_positive_exposures = 0.0;
         for (int i = 0; i < NoOfPaths; ++i) {
@@ -184,6 +194,7 @@ vector<double> RiskMetrics::CalculatePotentialFutureExposure(
     vector<double> PFE(NoOfSteps, 0.0);
 
     // Calculate PFE for each time step
+    #pragma omp parallel for
     for (int step = 0; step < NoOfSteps; ++step) {
         vector<double> exposures(NoOfPaths);
 
@@ -204,7 +215,7 @@ vector<double> RiskMetrics::CalculatePotentialFutureExposure(
 double RiskMetrics ::CalculateCVA(const vector<double>& EE, double recovery_rate, double hazard_rate, double T, int NoOfSteps) {
     double dt = T / NoOfSteps;
     double CVA = 0.0;
-
+    #pragma omp parallel for reduction(+:CVA)
     for (int step = 0; step < NoOfSteps; ++step) {
         double t = step * dt;
         double PD_t = 1 - exp(-hazard_rate * t);

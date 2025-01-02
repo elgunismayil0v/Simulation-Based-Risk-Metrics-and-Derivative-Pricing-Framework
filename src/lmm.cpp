@@ -6,6 +6,7 @@
 #include <numeric>
 #include <algorithm>
 #include <stdexcept>
+#include <omp.h>
 using namespace std;
 
 class LMM_DD{
@@ -40,6 +41,7 @@ double LMM_DD ::Caplet_price(const vector<vector<double> >& forwardRates, double
     const double dt = 1.0 / forwardRates.size();
 
     // Calculate payoff for each path
+    #pragma omp parallel for
     for (int i = 0; i < NoOfPaths; ++i) {
         double discountFactor = 1.0 / (1.0 + forwardRates[i].back() * dt);
         double S_T = forwardRates[i].back(); // Final price at maturity
@@ -53,7 +55,7 @@ double LMM_DD ::Caplet_price(const vector<vector<double> >& forwardRates, double
 double LMM_DD::Swapoption_price(const std::vector<double>& forwardRates, double K) {
     std::vector<double> payoff(forwardRates.size());
     const double dt = 1.0 / forwardRates.size();
-
+    #pragma omp parallel for
     for (size_t i = 0; i < forwardRates.size(); ++i) {
         double discountFactor = 1.0 / (1.0 + forwardRates[i] * dt);
         payoff[i] = max(forwardRates[i] - K, 0.0) * discountFactor;

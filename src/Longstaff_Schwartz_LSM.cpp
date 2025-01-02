@@ -4,6 +4,8 @@
 #include <cmath>
 #include <numeric>
 #include <Eigen/Dense>
+#include <algorithm>
+#include <omp.h>
 #include "HestonModel.h"
 using namespace std;
 using namespace Eigen;
@@ -39,6 +41,7 @@ double Longstaff_Schwartz_LSM::LSM(vector<vector<double> > &paths, double K, dou
     vector<double> discountedPayoff(NoOfPaths, 0.0); // Final payoffs
 
     // Iterate backward in time to calculate continuation values
+    #pragma omp parallel for
     for (int t = NoOfSteps - 2; t >= 0; --t) {
         // Step 1: Identify in-the-money paths
         vector<int> inTheMoneyIndices;
@@ -56,7 +59,7 @@ double Longstaff_Schwartz_LSM::LSM(vector<vector<double> > &paths, double K, dou
         // Step 2: Build regression matrices X (independent) and Y (dependent)
         MatrixXd X(inTheMoneyCount, 3); // Quadratic polynomial basis
         VectorXd Y(inTheMoneyCount);    // Continuation values
-
+        #pragma omp parallel for 
         for (int idx = 0; idx < inTheMoneyCount; ++idx) {
             int pathIdx = inTheMoneyIndices[idx];
             double S_t = paths[pathIdx][t];
@@ -70,6 +73,7 @@ double Longstaff_Schwartz_LSM::LSM(vector<vector<double> > &paths, double K, dou
         VectorXd coeffs = (X.transpose() * X).ldlt().solve(X.transpose() * Y);
 
         // Step 4: Calculate continuation values and decide payoff
+        #pragma omp parallel for
         for (int idx = 0; idx < inTheMoneyCount; ++idx) {
             int pathIdx = inTheMoneyIndices[idx];
             double S_t = paths[pathIdx][t];

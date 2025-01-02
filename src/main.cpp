@@ -5,9 +5,12 @@
 #include <vector>
 #include <cmath>
 #include <numeric>
+#include <chrono>
 using namespace std;
 
 int main() {
+    auto start_time = chrono::high_resolution_clock::now();
+
     Heston Heston;
     RiskMetrics riskMetrics;
     LMM_DD lmm_dd;
@@ -87,6 +90,10 @@ int main() {
     double CVA_lsm = riskMetrics.CalculateCVA(EE_lsm, 0.4, 0.02, T, NoOfSteps);
     cout << "CVA: " << CVA_lsm << endl;
     cout << "Risky Derivative Price of Longstaff-Schwartz : " << optionValues - CVA_lsm << endl;
+
+    auto end_time = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed = end_time - start_time;
+    cout << "Elapsed time: " << elapsed.count() << " s" << endl;
 
 
     return 0;

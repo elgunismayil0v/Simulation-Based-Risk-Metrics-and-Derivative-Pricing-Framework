@@ -20,6 +20,12 @@ target_include_directories(Simulation-Based-Risk-Metrics-and-Option-Pricing-Fram
     ${CMAKE_SOURCE_DIR}/include            # Include custom headers in the 'include' folder
 )
 
+# Add include directory for libomp (headers)
+include_directories(/opt/homebrew/opt/libomp/include)
+
+# Add library directory for libomp (library files)
+link_directories(/opt/homebrew/opt/libomp/lib)
+
 # Add compiler warning flags for better diagnostics
 target_compile_options(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework PRIVATE -Wno-unused-parameter)
 
