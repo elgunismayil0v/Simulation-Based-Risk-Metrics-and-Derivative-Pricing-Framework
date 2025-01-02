@@ -21,7 +21,7 @@ int main() {
     double r = 0.0;
     double f_0 = 0.1;
     double T = 1.0;
-    int NoOfPaths = 10000;
+    int NoOfPaths = 1000;
     int NoOfSteps = 1000;
     double beta = 0.5;
     double sigma = 0.1;

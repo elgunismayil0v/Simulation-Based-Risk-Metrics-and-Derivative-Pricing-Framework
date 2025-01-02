@@ -5,6 +5,7 @@
 #include <numeric>
 #include <algorithm>
 #include <stdexcept>
+#include <boost/math/distributions/non_central_chi_squared.hpp>
 using namespace std;
 
 class Heston {
@@ -39,22 +40,18 @@ vector<double> Heston::CIR_sample(int NoOfPaths, double kappa, double gamma, dou
     // Random number generator setup
     random_device rd;
     mt19937 generator(rd());
-    normal_distribution<> normal_dist(0.0, 1.0);
+    uniform_real_distribution<> uniform_dist(0.0, 1.0);
 
     vector<double> samples(NoOfPaths);
 
-    // Generate samples using the non-central chi-squared approximation
+    // Generate samples using Boost's non-central chi-squared distribution
     for (int i = 0; i < NoOfPaths; ++i) {
-        // Generate central chi-squared part
-        double central_sum = 0.0;
-        for (int j = 0; j < static_cast<int>(delta); ++j) {
-            double z = normal_dist(generator);
-            central_sum += z * z;
-        }
+        boost::math::non_central_chi_squared_distribution<double> dist(delta, lambda);
+        double uniform_sample = uniform_dist(generator);
+        double chi_squared_sample = quantile(dist, uniform_sample);
 
-        // Add non-centrality parameter
-        double non_central_part = lambda;
-        samples[i] = c * (central_sum + non_central_part);
+        // Scale the sample
+        samples[i] = c * chi_squared_sample;
 
         // Ensure non-negativity
         samples[i] = max(samples[i], 0.0);
@@ -62,6 +59,7 @@ vector<double> Heston::CIR_sample(int NoOfPaths, double kappa, double gamma, dou
 
     return samples;
 }
+
 
 vector<vector<double> > Heston ::GeneratePathsHestonAES( int NoOfPaths, int NoOfSteps, double T, double r, double S_0, double kappa,
     double gamma, double rho, double vbar, double v0) {

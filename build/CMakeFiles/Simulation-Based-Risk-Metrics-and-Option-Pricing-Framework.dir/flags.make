@@ -4,9 +4,9 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/eigen-3.4.0 -I/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include
+CXX_INCLUDES = -I/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/eigen-3.4.0 -I/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/boost_1_87_0 -I/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include
 
-CXX_FLAGSarm64 = -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -Wall -Wextra
+CXX_FLAGSarm64 = -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -Wno-unused-parameter
 
-CXX_FLAGS = -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -Wall -Wextra
+CXX_FLAGS = -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -Wno-unused-parameter
 
