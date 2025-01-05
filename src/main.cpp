@@ -1,12 +1,16 @@
 #include "HestonModel.h"
 #include "lmm.h"
 #include "Longstaff_Schwartz.h"
+#include "csv.h"
 #include <iostream>
 #include <vector>
 #include <cmath>
 #include <numeric>
 #include <chrono>
+#include "plot.h"
 using namespace std;
+
+
 
 int main() {
     auto start_time = chrono::high_resolution_clock::now();
@@ -94,6 +98,20 @@ int main() {
     auto end_time = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed = end_time - start_time;
     cout << "Elapsed time: " << elapsed.count() << " s" << endl;
+
+    // Csv files for the results
+    appendToCSV(forwardRates, "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/forwardRates.csv");
+    appendToCSV(paths, "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/HestonPaths.csv");
+    appendToCSV(paths_lsm, "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/LSMPaths.csv");
+
+     // Call Python script to plot from all files
+    std::cout << "Generating Plot for All Files...\n";
+    int result = system("python3 plot.py");
+    if (result != 0) {
+        std::cerr << "Error: Failed to run Python script.\n";
+    }
+
+
 
 
     return 0;

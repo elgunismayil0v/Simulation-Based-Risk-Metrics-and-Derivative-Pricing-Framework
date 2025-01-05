@@ -11,6 +11,7 @@ add_executable(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework
     src/Heston_Model_with_Monte_Carlo_simulation.cpp
     src/lmm.cpp
     src/Longstaff_Schwartz_LSM.cpp
+    src/csv.cpp
 )
 
 # Specify the path to the include directory
@@ -26,8 +27,43 @@ include_directories(/opt/homebrew/opt/libomp/include)
 # Add library directory for libomp (library files)
 link_directories(/opt/homebrew/opt/libomp/lib)
 
+
+
+
+
+# Include the directory where Python.h and numpy is located
+include_directories(/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13)
+
+
+include_directories(/opt/homebrew/lib/python3.13/site-packages/numpy/_core/include)
+
+# Link the Python shared library
+target_link_libraries(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework PRIVATE /opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/libpython3.13.dylib)
+
+
+
+
+# Add pybind11 include directory from Homebrew
+
+# Pybind11
+find_package(pybind11 CONFIG REQUIRED)
+target_link_libraries(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework PRIVATE pybind11::module)
+include_directories(/opt/homebrew/opt/pybind11/include/pybind11)
+
+# Find Pybind11
+find_package(pybind11 REQUIRED)
+
+# Link Pybind11 with your executable
+target_link_libraries(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework PRIVATE pybind11::embed)
+
+
+
+
 # Add compiler warning flags for better diagnostics
-target_compile_options(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework PRIVATE -Wno-unused-parameter)
+target_compile_options(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework PRIVATE
+    -Wall -Wextra -pedantic -Wno-unused-parameter 
+)
+
 
 
 

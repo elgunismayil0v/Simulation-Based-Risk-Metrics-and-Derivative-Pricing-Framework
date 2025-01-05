@@ -177,6 +177,30 @@ src/Longstaff_Schwartz_LSM.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Longstaff_Schwartz_LSM.cpp.s
 .PHONY : src/Longstaff_Schwartz_LSM.cpp.s
 
+src/csv.o: src/csv.cpp.o
+.PHONY : src/csv.o
+
+# target to build an object file
+src/csv.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/csv.cpp.o
+.PHONY : src/csv.cpp.o
+
+src/csv.i: src/csv.cpp.i
+.PHONY : src/csv.i
+
+# target to preprocess a source file
+src/csv.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/csv.cpp.i
+.PHONY : src/csv.cpp.i
+
+src/csv.s: src/csv.cpp.s
+.PHONY : src/csv.s
+
+# target to generate assembly for a file
+src/csv.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/csv.cpp.s
+.PHONY : src/csv.cpp.s
+
 src/lmm.o: src/lmm.cpp.o
 .PHONY : src/lmm.o
 
@@ -240,6 +264,9 @@ help:
 	@echo "... src/Longstaff_Schwartz_LSM.o"
 	@echo "... src/Longstaff_Schwartz_LSM.i"
 	@echo "... src/Longstaff_Schwartz_LSM.s"
+	@echo "... src/csv.o"
+	@echo "... src/csv.i"
+	@echo "... src/csv.s"
 	@echo "... src/lmm.o"
 	@echo "... src/lmm.i"
 	@echo "... src/lmm.s"
