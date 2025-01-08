@@ -7,6 +7,6 @@
 #include <string>
 
 // Function to append data (simulation paths) to a CSV file
-void appendToCSV(const std::vector<std::vector<double> >& data, const std::string& filename);
+void writeToCSV(const std::vector<std::vector<double> >& data, const std::string& filename);
 
 #endif // CSV_H

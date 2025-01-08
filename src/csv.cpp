@@ -3,10 +3,10 @@
 #include <vector>
 #include <string>
 
-// Function to append data (simulation paths) to a CSV file
-void appendToCSV(const std::vector<std::vector<double> >& data, const std::string& filename) {
-    // Open the file in append mode
-    std::ofstream file(filename, std::ios::app);
+// Function to write simulation paths to a CSV file (replaces content)
+void writeToCSV(const std::vector<std::vector<double> >& data, const std::string& filename) {
+    // Open the file in truncation mode (default for ofstream)
+    std::ofstream file(filename);
     
     if (file.is_open()) {
         // Write each path (row) to the file
@@ -18,8 +18,9 @@ void appendToCSV(const std::vector<std::vector<double> >& data, const std::strin
             file << "\n";  // End the row
         }
         file.close();
-        std::cout << "Data appended to " << filename << "\n";
+        std::cout << "Data written to " << filename << " (file replaced).\n";
     } else {
         std::cerr << "Error: Unable to open file for writing: " << filename << "\n";
     }
 }
+

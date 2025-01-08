@@ -100,9 +100,10 @@ int main() {
     cout << "Elapsed time: " << elapsed.count() << " s" << endl;
 
     // Csv files for the results
-    appendToCSV(forwardRates, "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/forwardRates.csv");
-    appendToCSV(paths, "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/HestonPaths.csv");
-    appendToCSV(paths_lsm, "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/LSMPaths.csv");
+    writeToCSV(forwardRates, "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/forwardRates.csv");
+    writeToCSV(paths, "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/HestonPaths.csv");
+    writeToCSV(paths_lsm, "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/LSMPaths.csv");
+
 
      // Call Python script to plot from all files
     std::cout << "Generating Plot for All Files...\n";

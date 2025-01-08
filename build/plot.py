@@ -1,66 +1,39 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-heston = pd.read_csv( "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/HestonPaths.csv")
-foward = pd.read_csv( "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/forwardRates.csv")
-lsmc = pd.read_csv( "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/LSMPaths.csv")
+# Function to plot the data
+def plot_simulation_data(data, title, y_label, paths_to_plot=None):
+    # Transpose the data: Rows (paths), Columns (time steps)
+    transposed_data = data
+    transposed_data.index.name = 'Path'  # Set the index name
+    transposed_data.columns = [f"Step {i}" for i in range(transposed_data.shape[1])]
+    
+    # Select a subset of paths for clarity (if paths_to_plot is None, plot all)
+    if paths_to_plot is None:
+        paths_to_plot = transposed_data.index[:100]  # Adjust as needed
+    
+    transposed_data.loc[paths_to_plot].T.plot(figsize=(10, 6), title=title)
 
-data_1 = heston
+    # Customize plot
+    plt.xlabel('Time Step')
+    plt.ylabel(y_label)
+    plt.legend().set_visible(False)
+    plt.grid()
+    plt.tight_layout()  # Adjust layout for better appearance
+    plt.show()
 
-# Transpose the data: Rows (paths), Columns (time steps)
-transposed_data = data_1.T
-transposed_data.index.name = 'Path'  # Set the index name
-transposed_data.columns = [f"Step {i}" for i in range(transposed_data.shape[1])]
+# Load data
+heston = pd.read_csv("/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/HestonPaths.csv")
+foward = pd.read_csv("/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/forwardRates.csv")
+lsmc = pd.read_csv("/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/LSMPaths.csv")
 
-# Plot: Select a subset of paths for clarity (e.g., first 5 paths)
-paths_to_plot = transposed_data.index[:5]  # Adjust as needed
-transposed_data.loc[paths_to_plot].T.plot(figsize=(10, 6), title="Monte Carlo Simulation: Price Paths")
+# Plot for Heston data
+plot_simulation_data(heston, "Monte Carlo Simulation: Price Paths (Heston)", "Price_of_European_Call")
 
-# Customize plot
-plt.xlabel('Time Step')
-plt.ylabel('Price_of_European_Call')
-plt.legend(title='Paths', bbox_to_anchor=(1.05, 1), loc='upper left')
-plt.grid()
-plt.tight_layout()  # Adjust layout for better appearance
-plt.show()
+# Plot for LSMC data
+plot_simulation_data(lsmc, "Monte Carlo Simulation: Price Paths (LSMC)", "Price_of_American_Call")
 
+# Plot for Forward data
+plot_simulation_data(foward, "Monte Carlo Simulation: Price Paths (Forward)", "Price_of_forward_rate")
 
-data_2 = lsmc
-
-# Transpose the data: Rows (paths), Columns (time steps)
-transposed_data = data_2.T
-transposed_data.index.name = 'Path'  # Set the index name
-transposed_data.columns = [f"Step {i}" for i in range(transposed_data.shape[1])]
-
-# Plot: Select a subset of paths for clarity (e.g., first 5 paths)
-paths_to_plot = transposed_data.index[:5]  # Adjust as needed
-transposed_data.loc[paths_to_plot].T.plot(figsize=(10, 6), title="Monte Carlo Simulation: Price Paths")
-
-# Customize plot
-plt.xlabel('Time Step')
-plt.ylabel('Price_of_American_Call')
-plt.legend(title='Paths', bbox_to_anchor=(1.05, 1), loc='upper left')
-plt.grid()
-plt.tight_layout()  # Adjust layout for better appearance
-plt.show()
-
-
-data_3 = foward
-
-# Transpose the data: Rows (paths), Columns (time steps)
-transposed_data = data_3.T
-transposed_data.index.name = 'Path'  # Set the index name
-transposed_data.columns = [f"Step {i}" for i in range(transposed_data.shape[1])]
-
-# Plot: Select a subset of paths for clarity (e.g., first 5 paths)
-paths_to_plot = transposed_data.index[:5]  # Adjust as needed
-transposed_data.loc[paths_to_plot].T.plot(figsize=(10, 6), title="Monte Carlo Simulation: Price Paths")
-
-# Customize plot
-plt.xlabel('Time Step')
-plt.ylabel('Price_of_forward_rate')
-plt.legend(title='Paths', bbox_to_anchor=(1.05, 1), loc='upper left')
-plt.grid()
-plt.tight_layout()  # Adjust layout for better appearance
-plt.show()
 
