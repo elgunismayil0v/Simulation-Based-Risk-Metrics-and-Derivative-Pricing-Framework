@@ -12,14 +12,11 @@ public:
         double r, double S_0, double kappa,
         double gamma, double rho, double vbar, double v0, double beta, double sigma);
 
-    // Function to compute the discount factor based on forward rates
-    double computeDiscountFactor(const std::vector<double>& forwardRates);
-
     // Function to calculate Caplet price
     double Caplet_price(const std::vector<std::vector<double> >& paths, double K);
 
     // Function to calculate Swap option price
-    double Swapoption_price(const std::vector<double>& forwardRates, double K);
+    double Floorlet_price(const std::vector<std::vector<double> >& forwardRates, double K);
 };
 
 #endif // LMM_H

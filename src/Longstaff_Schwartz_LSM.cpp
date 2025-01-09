@@ -17,8 +17,11 @@ using namespace Eigen;
 
 class Longstaff_Schwartz_LSM {
     public:
-    vector<vector<double> > Paths(int NoOfPaths, int NoOfSteps, double T, double r, double S_0, double kappa, double gamma, double rho, double vbar, double v0); // Generate stock price paths
-    double LSM(vector<vector<double> > &paths, double K, double r, double T);  // Longstaff-Schwartz algorithm
+    vector<vector<double> > Paths(int NoOfPaths, int NoOfSteps, double T,
+     double r, double S_0, double kappa, double gamma, double rho, double vbar,
+      double v0); // Generate the paths using Heston model
+    double LSM(vector<vector<double> > &paths, double K,
+     double r, double T);  // Calculate the option price using LSM
 
 
 };
@@ -26,11 +29,11 @@ class Longstaff_Schwartz_LSM {
 vector<vector<double> > Longstaff_Schwartz_LSM::Paths(int NoOfPaths, int NoOfSteps, double T,
      double r, double S_0, double kappa,
     double gamma, double rho, double vbar, double v0) {
-    Heston heston;
+    Heston heston; 
     vector<vector<double> > paths = heston.GeneratePathsHestonAES(NoOfPaths, NoOfSteps, T,
      r, S_0, kappa,
-    gamma, rho, vbar, v0);
-    return paths;
+    gamma, rho, vbar, v0); // Generate the paths 
+    return paths; // Return the paths
 };
 
 double Longstaff_Schwartz_LSM::LSM(vector<vector<double> > &paths, double K, double r, double T) {

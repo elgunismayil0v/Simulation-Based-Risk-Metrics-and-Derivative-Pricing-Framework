@@ -224,18 +224,22 @@ vector<double> RiskMetrics::CalculatePotentialFutureExposure(
     return PFE;
 };
 
-double RiskMetrics ::CalculateCVA(const vector<double>& EE, double recovery_rate, double hazard_rate, double T, int NoOfSteps) {
+double RiskMetrics::CalculateCVA(const vector<double>& EE, double recovery_rate, double hazard_rate, double T, int NoOfSteps) {
     double dt = T / NoOfSteps;
     double CVA = 0.0;
+    
     #pragma omp parallel for reduction(+:CVA)
     for (int step = 0; step < NoOfSteps; ++step) {
         double t = step * dt;
-        double PD_t = 1 - exp(-hazard_rate * t); // PD formula
-        CVA += (1 - recovery_rate) * EE[step] * PD_t * dt; // CVA formula
+        double S_t = exp(-hazard_rate * t);
+        double S_t_dt = exp(-hazard_rate * (t + dt));
+        double PD_interval = S_t - S_t_dt; // Incremental default probability
+        CVA += (1 - recovery_rate) * EE[step] * PD_interval; // CVA formula
     }
-
+    
     return CVA;
 }
+
 
 
 

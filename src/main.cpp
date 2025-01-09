@@ -1,13 +1,11 @@
-#include "HestonModel.h"
-#include "lmm.h"
-#include "Longstaff_Schwartz.h"
-#include "csv.h"
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include <numeric>
-#include <chrono>
-#include "plot.h"
+#include "HestonModel.h" // Include HestonModel header file
+#include "lmm.h" // Include LMM header file
+#include "Longstaff_Schwartz.h" // Include Longstaff-Schwartz header file
+#include "csv.h" // Include CSV header file
+#include <iostream> // Use for standard input/output
+#include <vector> // Use for vectors
+#include <numeric> // Use for accumulate function
+#include <chrono> // Use for time measurement
 using namespace std;
 
 
@@ -44,20 +42,20 @@ int main() {
     cout << "Caplet price: " << capletPrice << endl;
 
     // Calculate swap option price
-    double swapOptionPrice = lmm_dd.Swapoption_price(forwardRates.back(), K);
-    cout << "Swap option price: " << swapOptionPrice << endl;
+    double Floorlet_price = lmm_dd.Floorlet_price(forwardRates, K);
+    cout << "Floorlet price: " << Floorlet_price << endl;
 
     // Calculate RiskMetrics of the LMM_DD model
     vector<double> EE = riskMetrics.CalculateDiscountedExpectedExposureWithStrike(forwardRates, K, r, 1.0 / NoOfSteps);
     double mean_EE = accumulate(EE.begin(), EE.end(), 0.0) / EE.size();
-    cout << "Discounted Expected Exposure: " << mean_EE << endl;
+    cout << "Discounted Expected Exposure of Caplet: " << mean_EE << endl;
     vector<double> PFE = riskMetrics.CalculatePotentialFutureExposure(forwardRates, 0.95, K);
     double mean_PFE = accumulate(PFE.begin(), PFE.end(), 0.0) / PFE.size();
     cout << "Potential Future Exposure: " << mean_PFE << endl;
     double CVA = riskMetrics.CalculateCVA(EE, 0.4, 0.02, T, NoOfSteps);
     cout << "CVA: " << CVA << endl;
     cout << "Risky Derivative Price of Caplet : " << capletPrice - CVA << endl;
-    cout << "Risky Derivative Price of Swap Option : " << swapOptionPrice - CVA << endl;
+    cout << "Risky Derivative Price of Floorlet : " << Floorlet_price - CVA << endl;
 
     // Calculate European call price
     double S_0 = 100.0;
