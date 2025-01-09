@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Function to plot the data
-def plot_simulation_data(data, title, y_label, paths_to_plot=None):
+def plot_simulation_data(data, title, y_label, paths_to_plot=None, horizontal_line=None):
     # Transpose the data: Rows (paths), Columns (time steps)
     transposed_data = data
     transposed_data.index.name = 'Path'  # Set the index name
@@ -13,6 +13,10 @@ def plot_simulation_data(data, title, y_label, paths_to_plot=None):
         paths_to_plot = transposed_data.index[:100]  # Adjust as needed
     
     transposed_data.loc[paths_to_plot].T.plot(figsize=(10, 6), title=title)
+    
+     # Add a horizontal line if specified
+    if horizontal_line is not None:
+        plt.axhline(y=horizontal_line, color='red', linestyle='--', linewidth=2, label=f"K = {horizontal_line}")
 
     # Customize plot
     plt.xlabel('Time Step')
@@ -28,12 +32,18 @@ foward = pd.read_csv("/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Opt
 lsmc = pd.read_csv("/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/LSMPaths.csv")
 
 # Plot for Heston data
-plot_simulation_data(heston, "Monte Carlo Simulation: Price Paths (Heston)", "Price_of_European_Call")
+plot_simulation_data(heston,
+                     "Monte Carlo Simulation: Price Paths (Heston)",
+                     "Price_of_European_Call", horizontal_line= 100)
 
 # Plot for LSMC data
-plot_simulation_data(lsmc, "Monte Carlo Simulation: Price Paths (LSMC)", "Price_of_American_Call")
+plot_simulation_data(lsmc, "Monte Carlo Simulation: Price Paths (LSMC)",
+                     "Price_of_American_Call",
+                     horizontal_line= 100)
 
 # Plot for Forward data
-plot_simulation_data(foward, "Monte Carlo Simulation: Price Paths (Forward)", "Price_of_forward_rate")
+plot_simulation_data(foward, "Monte Carlo Simulation: Price Paths (Forward)",
+                     "Price_of_forward_rate",
+                     horizontal_line= 0.1)
 
 

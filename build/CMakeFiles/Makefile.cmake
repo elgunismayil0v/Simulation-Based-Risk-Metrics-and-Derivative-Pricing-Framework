@@ -18,7 +18,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/share/cmake/Modules/CMakeGenericSystem.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeInitializeConfigs.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeLanguageInformation.cmake"
-  "/opt/homebrew/share/cmake/Modules/CMakeParseArguments.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake"
   "/opt/homebrew/share/cmake/Modules/CheckCXXCompilerFlag.cmake"
@@ -30,7 +29,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/share/cmake/Modules/Compiler/GNU.cmake"
   "/opt/homebrew/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
   "/opt/homebrew/share/cmake/Modules/FindPackageMessage.cmake"
-  "/opt/homebrew/share/cmake/Modules/FindPythonInterp.cmake"
+  "/opt/homebrew/share/cmake/Modules/FindPython.cmake"
+  "/opt/homebrew/share/cmake/Modules/FindPython/Support.cmake"
   "/opt/homebrew/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake"
@@ -51,12 +51,11 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang-CXX.cmake"
   "/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang.cmake"
   "/opt/homebrew/share/cmake/Modules/Platform/UnixPaths.cmake"
-  "/opt/homebrew/share/cmake/pybind11/FindPythonLibsNew.cmake"
   "/opt/homebrew/share/cmake/pybind11/pybind11Common.cmake"
   "/opt/homebrew/share/cmake/pybind11/pybind11Config.cmake"
   "/opt/homebrew/share/cmake/pybind11/pybind11ConfigVersion.cmake"
+  "/opt/homebrew/share/cmake/pybind11/pybind11NewTools.cmake"
   "/opt/homebrew/share/cmake/pybind11/pybind11Targets.cmake"
-  "/opt/homebrew/share/cmake/pybind11/pybind11Tools.cmake"
   )
 
 # The corresponding makefile is:

@@ -387,10 +387,14 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding PYTHON
 FIND_PACKAGE_MESSAGE_DETAILS_PYTHON:INTERNAL=/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/build/venv/bin/python3.13.1
+//Details about finding Python
+FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[/opt/homebrew/Frameworks/Python.framework/Versions/3.13/bin/python3.13][/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13][/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/libpython3.13.dylib][/opt/homebrew/lib/python3.13/site-packages/numpy/_core/include][cfound components: Interpreter Development NumPy Development.Module Development.Embed ][v3.13.1()]
 //Details about finding PythonInterp
 FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/build/venv/bin/python][v3.13.1(3.7)]
 //Test HAS_FLTO_THIN
 HAS_FLTO_THIN:INTERNAL=1
+//Python executable during the last CMake run
+PYBIND11_PYTHON_EXECUTABLE_LAST:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions/3.13/bin/python3.13
 //ADVANCED property for variable: PYTHON_EXECUTABLE
 PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 PYTHON_INCLUDE_DIRS:INTERNAL=/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13
@@ -406,7 +410,7 @@ PYTHON_VERSION_MAJOR:INTERNAL=3
 PYTHON_VERSION_MINOR:INTERNAL=13
 Python_ADDITIONAL_VERSIONS:INTERNAL=3.12;3.11;3.10;3.9;3.8;3.7
 _PYBIND11_CROSSCOMPILING:INTERNAL=OFF
-_Python:INTERNAL=PYTHON
+_Python:INTERNAL=Python
 //Path to a program.
 _Python3_CONFIG:INTERNAL=_Python3_CONFIG-NOTFOUND
 //Compiler reason failure
@@ -422,6 +426,26 @@ _Python3_INCLUDE_DIR:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions
 _Python3_LIBRARY_RELEASE:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions/3.13/lib/libpython3.13.dylib
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
+//Compiler reason failure
+_Python_Compiler_REASON_FAILURE:INTERNAL=
+_Python_DEVELOPMENT_EMBED_SIGNATURE:INTERNAL=cb3fa249e86eedcf59e523c40fb802f3
+_Python_DEVELOPMENT_MODULE_SIGNATURE:INTERNAL=d67631b7e73c716cc71bd4f49624e9d1
+//Development reason failure
+_Python_Development_REASON_FAILURE:INTERNAL=
+//Path to a program.
+_Python_EXECUTABLE:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions/3.13/bin/python3.13
+//Path to a file.
+_Python_INCLUDE_DIR:INTERNAL=/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13
+//Python Properties
+_Python_INTERPRETER_PROPERTIES:INTERNAL=Python;3;13;1;64;<none>;cpython-313-darwin;abi3;/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/python3.13;/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/python3.13;/opt/homebrew/lib/python3.13/site-packages;/opt/homebrew/lib/python3.13/site-packages
+_Python_INTERPRETER_SIGNATURE:INTERNAL=7a1f714cc7198cb3c0d06752fabdd0bf
+//Interpreter reason failure
+_Python_Interpreter_REASON_FAILURE:INTERNAL=
+//Path to a library.
+_Python_LIBRARY_RELEASE:INTERNAL=/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/libpython3.13.dylib
+_Python_NUMPY_SIGNATURE:INTERNAL=9d191a2282e0be78ddaa59e6c2932443
+//Path to a file.
+_Python_NumPy_INCLUDE_DIR:INTERNAL=/opt/homebrew/lib/python3.13/site-packages/numpy/_core/include
 //Directories where pybind11 and possibly Python headers are located
 pybind11_INCLUDE_DIRS:INTERNAL=/opt/homebrew/include;/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13
 
