@@ -12,6 +12,7 @@ using namespace std; // Use standard namespace
 // For theoretical background, refer to the following book:
 // Lech A. Grzelak, Cornelis W. Oosterlee, 
 //"Mathematical Modeling and Computation in Finance: With Exercises and Python and MATLAB Computer Codes"
+// 12 and 14 chapter
 
 class LMM_DD{ // Define a class for Libor Market Model with Displacement Diffusion
     public:
@@ -19,7 +20,7 @@ class LMM_DD{ // Define a class for Libor Market Model with Displacement Diffusi
     double r, double S_0, double kappa,
     double gamma, double rho, double vbar, double v0, double beta, double sigma);
     double Caplet_price(const vector<vector<double> >& paths, double K);
-    double Floorlet_price(const vector<vector<double> >& forwardRates, double K);
+    double Swap_option_price(const vector<vector<double> >& Forward_rates, double K);
 };
 
 
@@ -58,26 +59,46 @@ double LMM_DD ::Caplet_price(const vector<vector<double> >& forwardRates, double
     }
     return accumulate(payoffs.begin(), payoffs.end(), 0.0) / NoOfPaths;
 
-};
+}
 
 
-double LMM_DD::Floorlet_price(const vector<vector<double> >& forwardRates, double K) {
-        int NoOfPaths = forwardRates.size(); // Number of paths
-    vector<double> payoffs(NoOfPaths); // Payoffs function
-    const double dt = 1.0 / forwardRates.size(); // Define tenor
 
-    // Calculate payoff for each path
+
+double LMM_DD::Swap_option_price(const vector<vector<double>>& Forward_rates, double K) {
+    int NoofPaths = Forward_rates.size(); // Number of rows
+    int n = Forward_rates[0].size();     // Number of columns (time steps)
+    double t_k = 1.0 / n;                // Tenor
+    
+    // Initialize vectors
+    vector<vector<double>> P_0(NoofPaths, vector<double>(n, 0.0)); // Zero coupon bond matrix
+    vector<double> annuity_factor(NoofPaths, 0.0);                 // Annuity factor
+    vector<double> Value_of_payer_swap(NoofPaths, 0.0);            // Payoff function
+
+    // Set initial bond price
     #pragma omp parallel for
-    for (int i = 0; i < NoOfPaths; ++i) {
-        double discountFactor = 1.0 / (1.0 + forwardRates[i].back() * dt);
-        // For discount factor, I use HJM framework for discount factor
-        // and HJM framwork claim that discount factor equal the instantaneous forward rate
-        // I use forward rate *  dt, due to the fact that the forward rate determine the T_k
-        // and payoff T_k+1
-        double S_T = forwardRates[i].back(); // Final price at maturity
-        payoffs[i] = max(K - S_T, 0.0) * discountFactor;
+    for (int i = 0; i < NoofPaths; i++) {
+        P_0[i][0] = 1.0; // Initial value for all paths
+   
+
+    // Calculate bond prices and annuity factor
+        #pragma omp parallel for
+        for (int j = 1; j < n; j++) { // Loop over time steps
+            P_0[i][j] = P_0[i][j - 1] / (1 + Forward_rates[i][j - 1] * t_k);
+        
+
+         // Compute annuity factor
+            annuity_factor[i] += P_0[i][j] * t_k;
+        }
+
+        // Calculate the value of the payer swap
+        Value_of_payer_swap[i] = max(P_0[i][n-1] - P_0[i][n - 2] - K * annuity_factor[i], 0.0);
     }
-    return accumulate(payoffs.begin(), payoffs.end(), 0.0) / NoOfPaths;
-    }
+
+    // Compute the average payoff across all paths
+    return accumulate(Value_of_payer_swap.begin(), Value_of_payer_swap.end(), 0.0) / NoofPaths;
+}
+
+
+
 
 

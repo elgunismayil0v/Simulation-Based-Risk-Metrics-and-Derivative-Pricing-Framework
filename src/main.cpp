@@ -18,21 +18,21 @@ int main() {
     LMM_DD lmm_dd;
 
     // LMM_DD model parameters
-    double kappa = 0.005;
+    double kappa = 0.05;
     double gamma = 0.05;
     double rho = 0.0;
     double vbar = 0.04;
     double v0 = 0.04;
     double r = 0.0;
-    double f_0 = 0.1;
+    double f_0 = 0.10;
     double T = 1.0;
     int NoOfPaths = 1000;
     int NoOfSteps = 1000;
-    double beta = 0.5;
-    double sigma = 0.1;
+    double beta = 0.8;
+    double sigma = 0.2;
 
     // LMM parameters
-    double K = 0.03;
+    double K = 0.02;
 
     // Generate forward rates using the Heston model
     vector<vector<double> > forwardRates = lmm_dd.Forward_rates(NoOfPaths, NoOfSteps, T, r, f_0, kappa, gamma, rho, vbar, v0, beta, sigma);
@@ -42,8 +42,8 @@ int main() {
     cout << "Caplet price: " << capletPrice << endl;
 
     // Calculate swap option price
-    double Floorlet_price = lmm_dd.Floorlet_price(forwardRates, K);
-    cout << "Floorlet price: " << Floorlet_price << endl;
+    double Swapoption = lmm_dd.Swap_option_price(forwardRates, K);
+    cout << "Payer Swapoption price : " << Swapoption << endl;
 
     // Calculate RiskMetrics of the LMM_DD model
     vector<double> EE = riskMetrics.CalculateDiscountedExpectedExposureWithStrike(forwardRates, K, r, 1.0 / NoOfSteps);
@@ -55,7 +55,7 @@ int main() {
     double CVA = riskMetrics.CalculateCVA(EE, 0.4, 0.02, T, NoOfSteps);
     cout << "CVA: " << CVA << endl;
     cout << "Risky Derivative Price of Caplet : " << capletPrice - CVA << endl;
-    cout << "Risky Derivative Price of Floorlet : " << Floorlet_price - CVA << endl;
+    cout << "Risky Derivative Price of Swapoption : " << Swapoption - CVA << endl;
 
     // Calculate European call price
     double S_0 = 100.0;
@@ -93,9 +93,7 @@ int main() {
     cout << "CVA: " << CVA_lsm << endl;
     cout << "Risky Derivative Price of Longstaff-Schwartz : " << optionValues - CVA_lsm << endl;
 
-    auto end_time = chrono::high_resolution_clock::now();
-    chrono::duration<double> elapsed = end_time - start_time;
-    cout << "Elapsed time: " << elapsed.count() << " s" << endl;
+    
 
     // Csv files for the results
     writeToCSV(forwardRates, "/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/forwardRates.csv");
@@ -109,6 +107,10 @@ int main() {
     if (result != 0) {
         std::cerr << "Error: Failed to run Python script.\n";
     }
+
+    auto end_time = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed = end_time - start_time;
+    cout << "Elapsed time: " << elapsed.count() << " s" << endl;
 
 
 

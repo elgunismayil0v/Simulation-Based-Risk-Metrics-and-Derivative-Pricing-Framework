@@ -15,8 +15,10 @@ public:
     // Function to calculate Caplet price
     double Caplet_price(const std::vector<std::vector<double> >& paths, double K);
 
-    // Function to calculate Swap option price
-    double Floorlet_price(const std::vector<std::vector<double> >& forwardRates, double K);
+
+
+    // Function to calculate payer swapoption
+    double Swap_option_price(const std::vector<std::vector<double> >& Forward_rates, double K);
 };
 
 #endif // LMM_H
