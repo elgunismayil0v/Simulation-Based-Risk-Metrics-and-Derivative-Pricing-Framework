@@ -60,7 +60,7 @@ This project implements the **Heston stochastic volatility model** and the **LMM
 - Initial variance (\( v_0 \)): 0.04
 - Risk-free rate (\( r \)): 0.0
 - Initial forward rate (\( f_0 \)): 0.1
-- Strike rate (\( K \)): 0.03
+- Strike rate ($K$): 0.03
 - Number of paths: 1000
 - Time steps: 252
 

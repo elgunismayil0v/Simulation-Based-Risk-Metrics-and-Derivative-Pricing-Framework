@@ -17,7 +17,7 @@ using namespace Eigen;
 
 class Longstaff_Schwartz_LSM {
     public:
-    vector<vector<double> > Paths(int NoOfPaths, int NoOfSteps, double T,
+    vector<vector<double> > Paths(const vector<vector<double> >& variance_paths, int NoOfPaths, int NoOfSteps, double T,
      double r, double S_0, double kappa, double gamma, double rho, double vbar,
       double v0); // Generate the paths using Heston model
     double LSM(vector<vector<double> > &paths, double K,
@@ -26,13 +26,13 @@ class Longstaff_Schwartz_LSM {
 
 };
 
-vector<vector<double> > Longstaff_Schwartz_LSM::Paths(int NoOfPaths, int NoOfSteps, double T,
+vector<vector<double> > Longstaff_Schwartz_LSM::Paths(const vector<vector<double> >& variance_paths, int NoOfPaths, int NoOfSteps, double T,
      double r, double S_0, double kappa,
     double gamma, double rho, double vbar, double v0) {
     Heston heston; 
-    vector<vector<double> > paths = heston.GeneratePathsHestonAES(NoOfPaths, NoOfSteps, T,
+    vector<vector<double> > paths = heston.GeneratePathsHestonAES(variance_paths, NoOfPaths, NoOfSteps, T,
      r, S_0, kappa,
-    gamma, rho, vbar, v0); // Generate the paths 
+    gamma, rho, vbar); // Generate the paths 
     return paths; // Return the paths
 };
 

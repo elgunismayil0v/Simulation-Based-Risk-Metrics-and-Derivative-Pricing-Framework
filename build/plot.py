@@ -11,7 +11,6 @@ def plot_simulation_data(data, title, y_label, paths_to_plot=None, horizontal_li
     # Select a subset of paths for clarity (if paths_to_plot is None, plot all)
     if paths_to_plot is None:
         paths_to_plot = transposed_data.index[:100]  # Adjust as needed
-    
     transposed_data.loc[paths_to_plot].T.plot(figsize=(10, 6), title=title)
     
      # Add a horizontal line if specified
@@ -28,22 +27,20 @@ def plot_simulation_data(data, title, y_label, paths_to_plot=None, horizontal_li
 
 # Load data
 heston = pd.read_csv("/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/HestonPaths.csv")
-foward = pd.read_csv("/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/forwardRates.csv")
-lsmc = pd.read_csv("/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/LSMPaths.csv")
+#foward = pd.read_csv("/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/forwardRates.csv")
+variance_paths = pd.read_csv("/Users/elgun/Desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/plot/variancepaths.csv")
 
 # Plot for Heston data
 plot_simulation_data(heston,
                      "Monte Carlo Simulation: Price Paths (Heston)",
                      "Price_of_European_Call", horizontal_line= 100)
 
-# Plot for LSMC data
-plot_simulation_data(lsmc, "Monte Carlo Simulation: Price Paths (LSMC)",
-                     "Price_of_American_Call",
-                     horizontal_line= 100)
+# Plot for variance data
+plot_simulation_data(variance_paths, "Monte Carlo Simulation: Variance Paths ","CIR process",horizontal_line= 0.0)
 
-# Plot for Forward data
-plot_simulation_data(foward, "Monte Carlo Simulation: Price Paths (Forward)",
-                     "Price_of_forward_rate",
-                     horizontal_line= 0.1)
+
+
+
+
 
 

@@ -7,7 +7,7 @@
 class LMM_DD {
 public:
     // Function to calculate forward rates for LMM model
-    std::vector<std::vector<double> > Forward_rates(
+    std::vector<std::vector<double> > Forward_rates(const std::vector<std::vector<double> >& variance_paths,
         int NoOfPaths, int NoOfSteps, double T,
         double r, double S_0, double kappa,
         double gamma, double rho, double vbar, double v0, double beta, double sigma);

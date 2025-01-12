@@ -16,7 +16,7 @@ using namespace std; // Use standard namespace
 
 class LMM_DD{ // Define a class for Libor Market Model with Displacement Diffusion
     public:
-    vector<vector<double> > Forward_rates(int NoOfPaths, int NoOfSteps, double T,
+    vector<vector<double> > Forward_rates(vector<vector<double>>variance_paths, int NoOfPaths, int NoOfSteps, double T,
     double r, double S_0, double kappa,
     double gamma, double rho, double vbar, double v0, double beta, double sigma);
     double Caplet_price(const vector<vector<double> >& paths, double K);
@@ -24,7 +24,7 @@ class LMM_DD{ // Define a class for Libor Market Model with Displacement Diffusi
 };
 
 
-vector<vector<double> > LMM_DD :: Forward_rates(int NoOfPaths, int NoOfSteps, double T,
+vector<vector<double> > LMM_DD :: Forward_rates(vector<vector<double>>variance_paths,int NoOfPaths, int NoOfSteps, double T,
      double r, double S_0, double kappa,
     double gamma, double rho, double vbar, double v0, double beta, double sigma) {
     // I use const for paths that are not modified
@@ -33,7 +33,7 @@ vector<vector<double> > LMM_DD :: Forward_rates(int NoOfPaths, int NoOfSteps, do
     double gamma_hat = beta * gamma * sigma; // Define parameters for model
     double v_bar_hat = pow(beta, 2) * vbar * pow(sigma, 2);
     double v0_hat = pow(beta, 2) * v0 * pow(sigma, 2); 
-    vector<vector<double> > forwardRates = Heston.GeneratePathsHestonAES(NoOfPaths, NoOfSteps, T, r, S_0, kappa, gamma_hat, rho, v_bar_hat, v0_hat);
+    vector<vector<double> > forwardRates = Heston.GeneratePathsHestonAES(variance_paths,NoOfPaths, NoOfSteps, T, r, S_0, kappa, gamma_hat, rho, v_bar_hat);
 
     return forwardRates;
 };
