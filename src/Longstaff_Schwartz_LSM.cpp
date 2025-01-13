@@ -1,12 +1,11 @@
-#include <iostream>
-#include <cmath>
-#include <vector>
-#include <cmath>
-#include <numeric>
-#include <Eigen/Dense>
-#include <algorithm>
-#include <omp.h>
-#include "HestonModel.h"
+#include <vector>  // for vector
+#include <cmath>  // for exp, sqrt, log
+#include <random> // for random_device, mt19937, normal_distribution
+#include <numeric>  // for accumulate
+#include <algorithm> // for max, sort
+#include <omp.h>  // for OpenMP
+#include <Eigen/Dense> // for matrix and regression operations
+#include "HestonModel.h" // For simulate paths
 using namespace std;
 using namespace Eigen;
 

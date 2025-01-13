@@ -1,10 +1,8 @@
-#include <iostream> // for cout
 #include <vector>  // for vector
 #include <cmath>  // for exp, sqrt, log
 #include <random> // for random_device, mt19937, normal_distribution
 #include <numeric>  // for accumulate
 #include <algorithm> // for max, sort
-#include <stdexcept> // for invalid_argument
 #include <boost/math/distributions/non_central_chi_squared.hpp> // for non_central_chi_squared_distribution
 #include <omp.h> // for OpenMP
 using namespace std;
@@ -52,13 +50,13 @@ vector<vector<double>> Heston::CIR_sample(int NoOfPaths, int NoOfSteps, double T
     double c = (gamma * gamma * (1.0 - exp_factor)) / (4.0 * kappa);
 
     vector<vector<double>> samples(NoOfPaths, vector<double>(NoOfSteps + 1, v0));
-
+    // Create random number generator
     random_device rd;
+    mt19937 generator(rd());
+    uniform_real_distribution<> uniform_dist(0.0, 1.0);
+    
     #pragma omp parallel for
     for (int i = 0; i < NoOfPaths; ++i) {
-        mt19937 generator(rd());
-        uniform_real_distribution<> uniform_dist(0.0, 1.0);
-
         for (int j = 0; j < NoOfSteps; ++j) {
             double lambda = (4.0 * kappa * exp_factor * samples[i][j]) / (gamma * gamma * (1.0 - exp_factor));
             boost::math::non_central_chi_squared_distribution<double> dist(delta, lambda);
@@ -82,7 +80,7 @@ vector<vector<double>> Heston::GeneratePathsHestonAES(const vector<vector<double
     vector<vector<double>> X(NoOfPaths, vector<double>(NoOfSteps + 1, log(S_0)));
     vector<vector<double>> S(NoOfPaths, vector<double>(NoOfSteps + 1, S_0));
 
-    double dt = T / static_cast<double>(NoOfSteps);
+    double dt = T / NoOfSteps;
     double sqrt_dt = sqrt(dt);
     double k0 = (r - rho / gamma * kappa * vbar) * dt;
     double k1 = (rho * kappa / gamma - 0.5) * dt - rho / gamma;
@@ -97,8 +95,7 @@ vector<vector<double>> Heston::GeneratePathsHestonAES(const vector<vector<double
             Z1[i][step] = normal_dist(gen);
             double dW1 = sqrt_dt * Z1[i][step];
             W1[i][step + 1] = W1[i][step] + dW1;
-            double next_variance = V[i][step + 1];
-            X[i][step + 1] = X[i][step] + k0 + k1 * V[i][step] + k2 * next_variance +
+            X[i][step + 1] = X[i][step] + k0 + k1 * V[i][step] + k2 * V[i][step + 1] +
                              sqrt((1.0 - rho * rho) * V[i][step]) * dW1;
 
             S[i][step + 1] = exp(X[i][step + 1]);
@@ -108,20 +105,26 @@ vector<vector<double>> Heston::GeneratePathsHestonAES(const vector<vector<double
     return S;
 }
 
-double Heston:: CalculateEuropeanCallPrice(
-    const vector<vector<double> >& paths,
-    double K, double r, double T) {
-    int NoOfPaths = paths.size(); // Number of paths
-    vector<double> payoffs(NoOfPaths, 0.0); // Payoffs function
-    // Calculate payoff for each path
-    #pragma omp parallel for
-        for (int i = 0; i < NoOfPaths; ++i) {
-            payoffs[i] = max(paths[i].back() - K, 0.0) * exp(-r * T);
-        }
-    // Average payoff and discount
-    double avg_payoff = accumulate(payoffs.begin(), payoffs.end(), 0.0) / NoOfPaths;
-    return avg_payoff;
+double Heston::CalculateEuropeanCallPrice(
+    const vector<vector<double>>& paths, double K, double r, double T) {
+    int NoOfPaths = paths.size();
+
+    double discount_factor = exp(-r * T); // Discount factor
+    double payoff_sum = 0.0;
+
+    // Parallel loop with reduction for sum of payoffs
+    #pragma omp parallel for reduction(+:payoff_sum)
+    for (int i = 0; i < NoOfPaths; ++i) {
+        double ST = paths[i].back(); // Final value of the path
+        double payoff = max(ST - K, 0.0);
+        payoff_sum += payoff;
+    }
+
+    // Calculate average payoff and return discounted price
+    double avg_payoff = payoff_sum / NoOfPaths;
+    return avg_payoff * discount_factor;
 }
+
 
 vector<double> RiskMetrics::CalculateDiscountedExpectedExposure(const vector<vector<double> >& paths, const double K, const double r, const double dt) {
     int NoOfSteps = paths[0].size(); // Number of time steps
@@ -143,44 +146,49 @@ vector<double> RiskMetrics::CalculateDiscountedExpectedExposure(const vector<vec
 }
 
 vector<double> RiskMetrics::CalculatePotentialFutureExposure(
-    const vector<vector<double> >& paths, double confidence_level, double K) {
+    const vector<vector<double>>& paths, double confidence_level, double K) {
     int NoOfSteps = paths[0].size(); // Number of time steps
     int NoOfPaths = paths.size();   // Number of paths
     vector<double> PFE(NoOfSteps, 0.0);
-    // Calculate PFE for each time step
-    #pragma omp parallel for
-    for (int i = 0; i < NoOfPaths; ++i) {
-        vector<double> exposures(NoOfPaths);
-        // Collect exposures at this time step
-        for (int step = 0; step < NoOfSteps; ++step) {
-            exposures[i] = max(paths[i][step] - K, 0.0);
-        
 
-            // Sort exposures to compute quantile
-            sort(exposures.begin(), exposures.end());
-            int index = static_cast<int>(confidence_level * NoOfPaths) - 1; // Index for quantile
-            PFE[i] = exposures[index];
+    // Parallelize across time steps
+    #pragma omp parallel for
+    for (int step = 0; step < NoOfSteps; ++step) {
+        vector<double> exposures(NoOfPaths);
+        
+        // Collect exposures at this time step for all paths
+        for (int i = 0; i < NoOfPaths; ++i) {
+            exposures[i] = max(paths[i][step] - K, 0.0);
         }
+
+        // Sort exposures to compute quantile
+        sort(exposures.begin(), exposures.end());
+        int index = static_cast<int>(confidence_level * NoOfPaths) - 1; // Index for quantile
+        PFE[step] = exposures[index];
     }
 
     return PFE;
-};
+}
 
-double RiskMetrics::CalculateCVA(const vector<double>& EE, double recovery_rate, double hazard_rate, double T, int NoOfSteps) {
+
+double RiskMetrics::CalculateCVA(
+    const vector<double>& EE, double recovery_rate, double hazard_rate, double T, int NoOfSteps) {
     double dt = T / NoOfSteps;
     double CVA = 0.0;
-    
+
+    // Parallel loop for CVA calculation
     #pragma omp parallel for reduction(+:CVA)
     for (int step = 0; step < NoOfSteps; ++step) {
         double t = step * dt;
-        double S_t = exp(-hazard_rate * t); // Define hazard rate
-        double S_t_dt = exp(-hazard_rate * (t + dt)); 
-        double PD_interval = S_t - S_t_dt; // Incremental default probability
-        CVA += (1 - recovery_rate) * EE[step] * PD_interval; // CVA formula
+        double S_t = exp(-hazard_rate * t);          // Survival probability at t
+        double S_t_dt = exp(-hazard_rate * (t + dt)); // Survival probability at t + dt
+        double PD_interval = S_t - S_t_dt;          // Incremental default probability
+        CVA += (1 - recovery_rate) * EE[step] * PD_interval; // CVA contribution for this step
     }
-    
+
     return CVA;
 }
+
 
 
 
