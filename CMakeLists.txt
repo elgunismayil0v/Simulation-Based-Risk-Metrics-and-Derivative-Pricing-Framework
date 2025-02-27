@@ -8,10 +8,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Add the executable with source files
 add_executable(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework
     src/main.cpp
-    src/Heston_Model_with_Monte_Carlo_simulation.cpp
-    src/lmm.cpp
-    src/Longstaff_Schwartz_LSM.cpp
-    src/csv.cpp
+    src/Simulation_1.cpp
+    src/EuropeanTypeOptionPricer.cpp
+    src/EuropeanTypeBarrierDownInOptionPricer.cpp
+    src/EuropeanTypeBarrierUpInOptionPricer.cpp
+    src/EuropeanTypeBarrierUpOutOptionPricer.cpp
+    src/EuropeanTypeBarrierDownOutOptionPricer.cpp
+   
 )
 
 # Include Eigen and Boost
