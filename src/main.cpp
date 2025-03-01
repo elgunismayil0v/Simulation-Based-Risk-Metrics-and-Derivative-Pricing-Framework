@@ -3,8 +3,8 @@
 #include "VarianceGenerator.h"
 #include "AssetPathGenerator.h"
 #include "OptionPricer.h"
-#include "EuropeanTypeVanillaOptionPricer.h"
-#include "EuropeanTypeBarrierDownOutOptionPricer.h"
+#include "EuropeanTypeAsianOptionPricer.h"
+#include "EuropeanTypeLookBackOptionPricer.h"
 #include <vector>
 
 using namespace std;
@@ -54,11 +54,12 @@ int main() {
     cout << endl;
 
     // Instantiate a EuropeanPlainVanilla option.
-    BarrierKnockDownOut option(NoOfPaths, strike, 90,T, r, BarrierKnockDownOut::Call, 
-                                S0, rho, NoOfSteps, kappa, gamma, vbar, v0);
+    AsianOption option(NoOfPaths, strike, T, r, AsianOption::Call, 
+    AsianOption::Fixed, S0, rho, NoOfSteps, kappa, gamma, vbar, v0);
 
-    BarrierKnockDownOut option1(NoOfPaths, strike, 90,T, r, BarrierKnockDownOut::Put, 
-                                 S0, rho, NoOfSteps, kappa, gamma, vbar, v0);
+
+    AsianOption option1(NoOfPaths, strike,T, r, AsianOption::Put, AsianOption::Floating ,
+    S0, rho, NoOfSteps, kappa, gamma, vbar, v0);
 
     // Price the option using the asset paths.
     double price = option();

@@ -15,14 +15,14 @@ class EuropeanPlainVanilla : public EuropeanOption {
         Call
     };
     // Define constructor
-    EuropeanPlainVanilla(double NoOfPaths_ ,double strike_, double T_, double r_, OptionType OptionType_, double S0_, double rho_, int NoOfSteps_,
+    EuropeanPlainVanilla(int NoOfPaths_ ,double strike_, double T_, double r_, OptionType OptionType_, double S0_, double rho_, int NoOfSteps_,
                double kappa_, double gamma_, double vbar_, double v0_);
     // Function
     virtual double operator()() const override;
     // Define deconstructor
     virtual ~EuropeanPlainVanilla(){};
     private:
-    double NoOfPaths;
+    int NoOfPaths;
     double strike;
     double T;
     double r;

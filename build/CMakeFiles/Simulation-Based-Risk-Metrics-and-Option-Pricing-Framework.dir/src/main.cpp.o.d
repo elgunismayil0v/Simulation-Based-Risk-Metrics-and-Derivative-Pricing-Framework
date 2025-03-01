@@ -984,6 +984,6 @@ CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/ma
   /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/VarianceGenerator.h \
   /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/AssetPathGenerator.h \
   /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/OptionPricer.h \
-  /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/EuropeanTypeVanillaOptionPricer.h \
+  /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/EuropeanTypeAsianOptionPricer.h \
   /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/EuropeanOption.h \
-  /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/EuropeanTypeBarrierDownOutOptionPricer.h
+  /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/EuropeanTypeLookBackOptionPricer.h

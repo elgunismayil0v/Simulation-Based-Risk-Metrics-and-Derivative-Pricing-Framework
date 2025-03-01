@@ -8,12 +8,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Add the executable with source files
 add_executable(Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework
     src/main.cpp
-    src/Simulation_1.cpp
-    src/EuropeanTypeOptionPricer.cpp
-    src/EuropeanTypeBarrierDownInOptionPricer.cpp
-    src/EuropeanTypeBarrierUpInOptionPricer.cpp
-    src/EuropeanTypeBarrierUpOutOptionPricer.cpp
-    src/EuropeanTypeBarrierDownOutOptionPricer.cpp
+    src/PathGenerator/PathGenerator.cpp
+    src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp
+    src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp
+    src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp
+    src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp
+    src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp
+    src/LookBack/EuropeanTypeLookBackOptionPricer.cpp
+    src/Asian/EuropeanTypeAsianOptionPricer.cpp
    
 )
 
