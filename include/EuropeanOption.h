@@ -11,6 +11,7 @@ class EuropeanOption : public OptionPricer {
     EuropeanOption(){};
     // Function
     virtual double operator()() const = 0;
+    
     // Define deconstructor
     virtual ~EuropeanOption(){};
 

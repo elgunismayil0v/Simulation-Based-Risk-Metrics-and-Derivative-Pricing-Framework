@@ -63,6 +63,47 @@ double EuropeanPlainVanilla:: operator()() const{
 }
 
 
+void EuropeanPlainVanilla:: setter_S0( double new_S0_){
+    S0 = new_S0_;
+}
+
+double EuropeanPlainVanilla::get_S0() const {
+    return S0; 
+}
+
+void EuropeanPlainVanilla::setter_r( double new_r_) {
+    r = new_r_;
+}
+
+double EuropeanPlainVanilla::get_r() const {
+    return r; 
+}
+
+void EuropeanPlainVanilla::setter_v0( double new_v0_) {
+    v0 = new_v0_;
+}
+
+double EuropeanPlainVanilla::get_v0() const {
+    return v0; 
+}
+
+void EuropeanPlainVanilla::setter_T( double new_T_) {
+    T = new_T_;
+}
+
+double EuropeanPlainVanilla::get_T() const {
+    return T; 
+}
+
+
+
+
+
+
+
+
+
+
 
     
 

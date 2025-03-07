@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named SimulationLib
+
+# Build rule for target.
+SimulationLib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SimulationLib
+.PHONY : SimulationLib
+
+# fast build rule for target.
+SimulationLib/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/build
+.PHONY : SimulationLib/fast
+
+#=============================================================================
 # Target rules for targets named Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework
 
 # Build rule for target.
@@ -134,7 +147,7 @@ src/Asian/EuropeanTypeAsianOptionPricer.o: src/Asian/EuropeanTypeAsianOptionPric
 
 # target to build an object file
 src/Asian/EuropeanTypeAsianOptionPricer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Asian/EuropeanTypeAsianOptionPricer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Asian/EuropeanTypeAsianOptionPricer.cpp.o
 .PHONY : src/Asian/EuropeanTypeAsianOptionPricer.cpp.o
 
 src/Asian/EuropeanTypeAsianOptionPricer.i: src/Asian/EuropeanTypeAsianOptionPricer.cpp.i
@@ -142,7 +155,7 @@ src/Asian/EuropeanTypeAsianOptionPricer.i: src/Asian/EuropeanTypeAsianOptionPric
 
 # target to preprocess a source file
 src/Asian/EuropeanTypeAsianOptionPricer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Asian/EuropeanTypeAsianOptionPricer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Asian/EuropeanTypeAsianOptionPricer.cpp.i
 .PHONY : src/Asian/EuropeanTypeAsianOptionPricer.cpp.i
 
 src/Asian/EuropeanTypeAsianOptionPricer.s: src/Asian/EuropeanTypeAsianOptionPricer.cpp.s
@@ -150,7 +163,7 @@ src/Asian/EuropeanTypeAsianOptionPricer.s: src/Asian/EuropeanTypeAsianOptionPric
 
 # target to generate assembly for a file
 src/Asian/EuropeanTypeAsianOptionPricer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Asian/EuropeanTypeAsianOptionPricer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Asian/EuropeanTypeAsianOptionPricer.cpp.s
 .PHONY : src/Asian/EuropeanTypeAsianOptionPricer.cpp.s
 
 src/Barrier/EuropeanTypeBarrierDownInOptionPricer.o: src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.o
@@ -158,7 +171,7 @@ src/Barrier/EuropeanTypeBarrierDownInOptionPricer.o: src/Barrier/EuropeanTypeBar
 
 # target to build an object file
 src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.o
 .PHONY : src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.o
 
 src/Barrier/EuropeanTypeBarrierDownInOptionPricer.i: src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.i
@@ -166,7 +179,7 @@ src/Barrier/EuropeanTypeBarrierDownInOptionPricer.i: src/Barrier/EuropeanTypeBar
 
 # target to preprocess a source file
 src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.i
 .PHONY : src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.i
 
 src/Barrier/EuropeanTypeBarrierDownInOptionPricer.s: src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.s
@@ -174,7 +187,7 @@ src/Barrier/EuropeanTypeBarrierDownInOptionPricer.s: src/Barrier/EuropeanTypeBar
 
 # target to generate assembly for a file
 src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.s
 .PHONY : src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.s
 
 src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.o: src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.o
@@ -182,7 +195,7 @@ src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.o: src/Barrier/EuropeanTypeBa
 
 # target to build an object file
 src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.o
 .PHONY : src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.o
 
 src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.i: src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.i
@@ -190,7 +203,7 @@ src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.i: src/Barrier/EuropeanTypeBa
 
 # target to preprocess a source file
 src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.i
 .PHONY : src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.i
 
 src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.s: src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.s
@@ -198,7 +211,7 @@ src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.s: src/Barrier/EuropeanTypeBa
 
 # target to generate assembly for a file
 src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.s
 .PHONY : src/Barrier/EuropeanTypeBarrierDownOutOptionPricer.cpp.s
 
 src/Barrier/EuropeanTypeBarrierUpInOptionPricer.o: src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.o
@@ -206,7 +219,7 @@ src/Barrier/EuropeanTypeBarrierUpInOptionPricer.o: src/Barrier/EuropeanTypeBarri
 
 # target to build an object file
 src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.o
 .PHONY : src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.o
 
 src/Barrier/EuropeanTypeBarrierUpInOptionPricer.i: src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.i
@@ -214,7 +227,7 @@ src/Barrier/EuropeanTypeBarrierUpInOptionPricer.i: src/Barrier/EuropeanTypeBarri
 
 # target to preprocess a source file
 src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.i
 .PHONY : src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.i
 
 src/Barrier/EuropeanTypeBarrierUpInOptionPricer.s: src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.s
@@ -222,7 +235,7 @@ src/Barrier/EuropeanTypeBarrierUpInOptionPricer.s: src/Barrier/EuropeanTypeBarri
 
 # target to generate assembly for a file
 src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.s
 .PHONY : src/Barrier/EuropeanTypeBarrierUpInOptionPricer.cpp.s
 
 src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.o: src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.o
@@ -230,7 +243,7 @@ src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.o: src/Barrier/EuropeanTypeBarr
 
 # target to build an object file
 src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.o
 .PHONY : src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.o
 
 src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.i: src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.i
@@ -238,7 +251,7 @@ src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.i: src/Barrier/EuropeanTypeBarr
 
 # target to preprocess a source file
 src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.i
 .PHONY : src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.i
 
 src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.s: src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.s
@@ -246,15 +259,135 @@ src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.s: src/Barrier/EuropeanTypeBarr
 
 # target to generate assembly for a file
 src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.s
 .PHONY : src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.cpp.s
+
+src/Greeks/Delta.o: src/Greeks/Delta.cpp.o
+.PHONY : src/Greeks/Delta.o
+
+# target to build an object file
+src/Greeks/Delta.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Delta.cpp.o
+.PHONY : src/Greeks/Delta.cpp.o
+
+src/Greeks/Delta.i: src/Greeks/Delta.cpp.i
+.PHONY : src/Greeks/Delta.i
+
+# target to preprocess a source file
+src/Greeks/Delta.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Delta.cpp.i
+.PHONY : src/Greeks/Delta.cpp.i
+
+src/Greeks/Delta.s: src/Greeks/Delta.cpp.s
+.PHONY : src/Greeks/Delta.s
+
+# target to generate assembly for a file
+src/Greeks/Delta.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Delta.cpp.s
+.PHONY : src/Greeks/Delta.cpp.s
+
+src/Greeks/Gamma.o: src/Greeks/Gamma.cpp.o
+.PHONY : src/Greeks/Gamma.o
+
+# target to build an object file
+src/Greeks/Gamma.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Gamma.cpp.o
+.PHONY : src/Greeks/Gamma.cpp.o
+
+src/Greeks/Gamma.i: src/Greeks/Gamma.cpp.i
+.PHONY : src/Greeks/Gamma.i
+
+# target to preprocess a source file
+src/Greeks/Gamma.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Gamma.cpp.i
+.PHONY : src/Greeks/Gamma.cpp.i
+
+src/Greeks/Gamma.s: src/Greeks/Gamma.cpp.s
+.PHONY : src/Greeks/Gamma.s
+
+# target to generate assembly for a file
+src/Greeks/Gamma.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Gamma.cpp.s
+.PHONY : src/Greeks/Gamma.cpp.s
+
+src/Greeks/Rho.o: src/Greeks/Rho.cpp.o
+.PHONY : src/Greeks/Rho.o
+
+# target to build an object file
+src/Greeks/Rho.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Rho.cpp.o
+.PHONY : src/Greeks/Rho.cpp.o
+
+src/Greeks/Rho.i: src/Greeks/Rho.cpp.i
+.PHONY : src/Greeks/Rho.i
+
+# target to preprocess a source file
+src/Greeks/Rho.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Rho.cpp.i
+.PHONY : src/Greeks/Rho.cpp.i
+
+src/Greeks/Rho.s: src/Greeks/Rho.cpp.s
+.PHONY : src/Greeks/Rho.s
+
+# target to generate assembly for a file
+src/Greeks/Rho.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Rho.cpp.s
+.PHONY : src/Greeks/Rho.cpp.s
+
+src/Greeks/Theta.o: src/Greeks/Theta.cpp.o
+.PHONY : src/Greeks/Theta.o
+
+# target to build an object file
+src/Greeks/Theta.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Theta.cpp.o
+.PHONY : src/Greeks/Theta.cpp.o
+
+src/Greeks/Theta.i: src/Greeks/Theta.cpp.i
+.PHONY : src/Greeks/Theta.i
+
+# target to preprocess a source file
+src/Greeks/Theta.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Theta.cpp.i
+.PHONY : src/Greeks/Theta.cpp.i
+
+src/Greeks/Theta.s: src/Greeks/Theta.cpp.s
+.PHONY : src/Greeks/Theta.s
+
+# target to generate assembly for a file
+src/Greeks/Theta.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Theta.cpp.s
+.PHONY : src/Greeks/Theta.cpp.s
+
+src/Greeks/Vega.o: src/Greeks/Vega.cpp.o
+.PHONY : src/Greeks/Vega.o
+
+# target to build an object file
+src/Greeks/Vega.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Vega.cpp.o
+.PHONY : src/Greeks/Vega.cpp.o
+
+src/Greeks/Vega.i: src/Greeks/Vega.cpp.i
+.PHONY : src/Greeks/Vega.i
+
+# target to preprocess a source file
+src/Greeks/Vega.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Vega.cpp.i
+.PHONY : src/Greeks/Vega.cpp.i
+
+src/Greeks/Vega.s: src/Greeks/Vega.cpp.s
+.PHONY : src/Greeks/Vega.s
+
+# target to generate assembly for a file
+src/Greeks/Vega.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Greeks/Vega.cpp.s
+.PHONY : src/Greeks/Vega.cpp.s
 
 src/LookBack/EuropeanTypeLookBackOptionPricer.o: src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.o
 .PHONY : src/LookBack/EuropeanTypeLookBackOptionPricer.o
 
 # target to build an object file
 src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.o
 .PHONY : src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.o
 
 src/LookBack/EuropeanTypeLookBackOptionPricer.i: src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.i
@@ -262,7 +395,7 @@ src/LookBack/EuropeanTypeLookBackOptionPricer.i: src/LookBack/EuropeanTypeLookBa
 
 # target to preprocess a source file
 src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.i
 .PHONY : src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.i
 
 src/LookBack/EuropeanTypeLookBackOptionPricer.s: src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.s
@@ -270,39 +403,135 @@ src/LookBack/EuropeanTypeLookBackOptionPricer.s: src/LookBack/EuropeanTypeLookBa
 
 # target to generate assembly for a file
 src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.s
 .PHONY : src/LookBack/EuropeanTypeLookBackOptionPricer.cpp.s
 
-src/Simulation_1.o: src/Simulation_1.cpp.o
-.PHONY : src/Simulation_1.o
+src/PathGenerator/PathGenerator.o: src/PathGenerator/PathGenerator.cpp.o
+.PHONY : src/PathGenerator/PathGenerator.o
 
 # target to build an object file
-src/Simulation_1.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Simulation_1.cpp.o
-.PHONY : src/Simulation_1.cpp.o
+src/PathGenerator/PathGenerator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/PathGenerator/PathGenerator.cpp.o
+.PHONY : src/PathGenerator/PathGenerator.cpp.o
 
-src/Simulation_1.i: src/Simulation_1.cpp.i
-.PHONY : src/Simulation_1.i
+src/PathGenerator/PathGenerator.i: src/PathGenerator/PathGenerator.cpp.i
+.PHONY : src/PathGenerator/PathGenerator.i
 
 # target to preprocess a source file
-src/Simulation_1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Simulation_1.cpp.i
-.PHONY : src/Simulation_1.cpp.i
+src/PathGenerator/PathGenerator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/PathGenerator/PathGenerator.cpp.i
+.PHONY : src/PathGenerator/PathGenerator.cpp.i
 
-src/Simulation_1.s: src/Simulation_1.cpp.s
-.PHONY : src/Simulation_1.s
+src/PathGenerator/PathGenerator.s: src/PathGenerator/PathGenerator.cpp.s
+.PHONY : src/PathGenerator/PathGenerator.s
 
 # target to generate assembly for a file
-src/Simulation_1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Simulation_1.cpp.s
-.PHONY : src/Simulation_1.cpp.s
+src/PathGenerator/PathGenerator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/PathGenerator/PathGenerator.cpp.s
+.PHONY : src/PathGenerator/PathGenerator.cpp.s
+
+src/RiskMetrics/Cva.o: src/RiskMetrics/Cva.cpp.o
+.PHONY : src/RiskMetrics/Cva.o
+
+# target to build an object file
+src/RiskMetrics/Cva.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/Cva.cpp.o
+.PHONY : src/RiskMetrics/Cva.cpp.o
+
+src/RiskMetrics/Cva.i: src/RiskMetrics/Cva.cpp.i
+.PHONY : src/RiskMetrics/Cva.i
+
+# target to preprocess a source file
+src/RiskMetrics/Cva.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/Cva.cpp.i
+.PHONY : src/RiskMetrics/Cva.cpp.i
+
+src/RiskMetrics/Cva.s: src/RiskMetrics/Cva.cpp.s
+.PHONY : src/RiskMetrics/Cva.s
+
+# target to generate assembly for a file
+src/RiskMetrics/Cva.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/Cva.cpp.s
+.PHONY : src/RiskMetrics/Cva.cpp.s
+
+src/RiskMetrics/ExceptedExposure.o: src/RiskMetrics/ExceptedExposure.cpp.o
+.PHONY : src/RiskMetrics/ExceptedExposure.o
+
+# target to build an object file
+src/RiskMetrics/ExceptedExposure.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/ExceptedExposure.cpp.o
+.PHONY : src/RiskMetrics/ExceptedExposure.cpp.o
+
+src/RiskMetrics/ExceptedExposure.i: src/RiskMetrics/ExceptedExposure.cpp.i
+.PHONY : src/RiskMetrics/ExceptedExposure.i
+
+# target to preprocess a source file
+src/RiskMetrics/ExceptedExposure.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/ExceptedExposure.cpp.i
+.PHONY : src/RiskMetrics/ExceptedExposure.cpp.i
+
+src/RiskMetrics/ExceptedExposure.s: src/RiskMetrics/ExceptedExposure.cpp.s
+.PHONY : src/RiskMetrics/ExceptedExposure.s
+
+# target to generate assembly for a file
+src/RiskMetrics/ExceptedExposure.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/ExceptedExposure.cpp.s
+.PHONY : src/RiskMetrics/ExceptedExposure.cpp.s
+
+src/RiskMetrics/Exposure.o: src/RiskMetrics/Exposure.cpp.o
+.PHONY : src/RiskMetrics/Exposure.o
+
+# target to build an object file
+src/RiskMetrics/Exposure.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/Exposure.cpp.o
+.PHONY : src/RiskMetrics/Exposure.cpp.o
+
+src/RiskMetrics/Exposure.i: src/RiskMetrics/Exposure.cpp.i
+.PHONY : src/RiskMetrics/Exposure.i
+
+# target to preprocess a source file
+src/RiskMetrics/Exposure.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/Exposure.cpp.i
+.PHONY : src/RiskMetrics/Exposure.cpp.i
+
+src/RiskMetrics/Exposure.s: src/RiskMetrics/Exposure.cpp.s
+.PHONY : src/RiskMetrics/Exposure.s
+
+# target to generate assembly for a file
+src/RiskMetrics/Exposure.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/Exposure.cpp.s
+.PHONY : src/RiskMetrics/Exposure.cpp.s
+
+src/RiskMetrics/PotentialFutureExposure.o: src/RiskMetrics/PotentialFutureExposure.cpp.o
+.PHONY : src/RiskMetrics/PotentialFutureExposure.o
+
+# target to build an object file
+src/RiskMetrics/PotentialFutureExposure.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/PotentialFutureExposure.cpp.o
+.PHONY : src/RiskMetrics/PotentialFutureExposure.cpp.o
+
+src/RiskMetrics/PotentialFutureExposure.i: src/RiskMetrics/PotentialFutureExposure.cpp.i
+.PHONY : src/RiskMetrics/PotentialFutureExposure.i
+
+# target to preprocess a source file
+src/RiskMetrics/PotentialFutureExposure.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/PotentialFutureExposure.cpp.i
+.PHONY : src/RiskMetrics/PotentialFutureExposure.cpp.i
+
+src/RiskMetrics/PotentialFutureExposure.s: src/RiskMetrics/PotentialFutureExposure.cpp.s
+.PHONY : src/RiskMetrics/PotentialFutureExposure.s
+
+# target to generate assembly for a file
+src/RiskMetrics/PotentialFutureExposure.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/RiskMetrics/PotentialFutureExposure.cpp.s
+.PHONY : src/RiskMetrics/PotentialFutureExposure.cpp.s
 
 src/Vanilla/EuropeanTypeVanillaOptionPricer.o: src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.o
 .PHONY : src/Vanilla/EuropeanTypeVanillaOptionPricer.o
 
 # target to build an object file
 src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.o
 .PHONY : src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.o
 
 src/Vanilla/EuropeanTypeVanillaOptionPricer.i: src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.i
@@ -310,7 +539,7 @@ src/Vanilla/EuropeanTypeVanillaOptionPricer.i: src/Vanilla/EuropeanTypeVanillaOp
 
 # target to preprocess a source file
 src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.i
 .PHONY : src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.i
 
 src/Vanilla/EuropeanTypeVanillaOptionPricer.s: src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.s
@@ -318,7 +547,7 @@ src/Vanilla/EuropeanTypeVanillaOptionPricer.s: src/Vanilla/EuropeanTypeVanillaOp
 
 # target to generate assembly for a file
 src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.s
 .PHONY : src/Vanilla/EuropeanTypeVanillaOptionPricer.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -326,6 +555,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/main.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
@@ -334,6 +564,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/main.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
@@ -342,6 +573,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/main.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
@@ -354,6 +586,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework"
+	@echo "... SimulationLib"
 	@echo "... src/Asian/EuropeanTypeAsianOptionPricer.o"
 	@echo "... src/Asian/EuropeanTypeAsianOptionPricer.i"
 	@echo "... src/Asian/EuropeanTypeAsianOptionPricer.s"
@@ -369,12 +602,39 @@ help:
 	@echo "... src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.o"
 	@echo "... src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.i"
 	@echo "... src/Barrier/EuropeanTypeBarrierUpOutOptionPricer.s"
+	@echo "... src/Greeks/Delta.o"
+	@echo "... src/Greeks/Delta.i"
+	@echo "... src/Greeks/Delta.s"
+	@echo "... src/Greeks/Gamma.o"
+	@echo "... src/Greeks/Gamma.i"
+	@echo "... src/Greeks/Gamma.s"
+	@echo "... src/Greeks/Rho.o"
+	@echo "... src/Greeks/Rho.i"
+	@echo "... src/Greeks/Rho.s"
+	@echo "... src/Greeks/Theta.o"
+	@echo "... src/Greeks/Theta.i"
+	@echo "... src/Greeks/Theta.s"
+	@echo "... src/Greeks/Vega.o"
+	@echo "... src/Greeks/Vega.i"
+	@echo "... src/Greeks/Vega.s"
 	@echo "... src/LookBack/EuropeanTypeLookBackOptionPricer.o"
 	@echo "... src/LookBack/EuropeanTypeLookBackOptionPricer.i"
 	@echo "... src/LookBack/EuropeanTypeLookBackOptionPricer.s"
-	@echo "... src/Simulation_1.o"
-	@echo "... src/Simulation_1.i"
-	@echo "... src/Simulation_1.s"
+	@echo "... src/PathGenerator/PathGenerator.o"
+	@echo "... src/PathGenerator/PathGenerator.i"
+	@echo "... src/PathGenerator/PathGenerator.s"
+	@echo "... src/RiskMetrics/Cva.o"
+	@echo "... src/RiskMetrics/Cva.i"
+	@echo "... src/RiskMetrics/Cva.s"
+	@echo "... src/RiskMetrics/ExceptedExposure.o"
+	@echo "... src/RiskMetrics/ExceptedExposure.i"
+	@echo "... src/RiskMetrics/ExceptedExposure.s"
+	@echo "... src/RiskMetrics/Exposure.o"
+	@echo "... src/RiskMetrics/Exposure.i"
+	@echo "... src/RiskMetrics/Exposure.s"
+	@echo "... src/RiskMetrics/PotentialFutureExposure.o"
+	@echo "... src/RiskMetrics/PotentialFutureExposure.i"
+	@echo "... src/RiskMetrics/PotentialFutureExposure.s"
 	@echo "... src/Vanilla/EuropeanTypeVanillaOptionPricer.o"
 	@echo "... src/Vanilla/EuropeanTypeVanillaOptionPricer.i"
 	@echo "... src/Vanilla/EuropeanTypeVanillaOptionPricer.s"

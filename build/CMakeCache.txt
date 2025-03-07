@@ -14,11 +14,17 @@
 # EXTERNAL cache entries
 ########################
 
+//The directory containing a CMake configuration file for Boost.
+Boost_DIR:PATH=/opt/homebrew/lib/cmake/Boost-1.87.0
+
+//Path to a file.
+Boost_INCLUDE_DIR:PATH=/opt/homebrew/include
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
 //Path to a program.
-CMAKE_AR:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar
+CMAKE_AR:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
@@ -27,8 +33,8 @@ CMAKE_BUILD_TYPE:STRING=
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
-//No help, variable specified on the command line.
-CMAKE_CXX_COMPILER:UNINITIALIZED=/usr/bin/clang++
+//CXX compiler
+CMAKE_CXX_COMPILER:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/c++
 
 //Flags used by the CXX compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
@@ -45,8 +51,8 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//No help, variable specified on the command line.
-CMAKE_C_COMPILER:UNINITIALIZED=/usr/bin/clang
+//C compiler
+CMAKE_C_COMPILER:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/cc
 
 //Flags used by the C compiler during all build types.
 CMAKE_C_FLAGS:STRING=
@@ -94,7 +100,7 @@ CMAKE_INSTALL_NAME_TOOL:FILEPATH=/usr/bin/install_name_tool
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
 
 //Path to a program.
-CMAKE_LINKER:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
+CMAKE_LINKER:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ld
 
 //Path to a program.
 CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/make
@@ -120,13 +126,13 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_NM:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/nm
+CMAKE_NM:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/nm
 
 //Path to a program.
 CMAKE_OBJCOPY:FILEPATH=CMAKE_OBJCOPY-NOTFOUND
 
 //Path to a program.
-CMAKE_OBJDUMP:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/objdump
+CMAKE_OBJDUMP:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/objdump
 
 //Build architectures for OSX
 CMAKE_OSX_ARCHITECTURES:STRING=
@@ -137,7 +143,7 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 
 //The product will be built against the headers and libraries located
 // inside the indicated SDK.
-CMAKE_OSX_SYSROOT:PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+CMAKE_OSX_SYSROOT:PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk
 
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
@@ -149,7 +155,7 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 CMAKE_PROJECT_NAME:STATIC=LongstaffSchwartzLSM
 
 //Path to a program.
-CMAKE_RANLIB:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib
+CMAKE_RANLIB:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ranlib
 
 //Path to a program.
 CMAKE_READELF:FILEPATH=CMAKE_READELF-NOTFOUND
@@ -202,10 +208,10 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_STRIP:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip
+CMAKE_STRIP:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/strip
 
 //Path to a program.
-CMAKE_TAPI:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/tapi
+CMAKE_TAPI:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/tapi
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -222,30 +228,31 @@ LongstaffSchwartzLSM_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 LongstaffSchwartzLSM_SOURCE_DIR:STATIC=/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw
 
-//Overwrite cached values read from Python library (classic search).
-// Turn off if cross-compiling and manually setting these values.
-PYBIND11_PYTHONLIBS_OVERWRITE:BOOL=ON
+//CXX compiler flags for OpenMP parallelization
+OpenMP_CXX_FLAGS:STRING=NOTFOUND
 
-//Python version to use for compiling modules
-PYBIND11_PYTHON_VERSION:STRING=
+//CXX compiler libraries for OpenMP parallelization
+OpenMP_CXX_LIB_NAMES:STRING=NOTFOUND
 
-//Path to a program.
-PYTHON_EXECUTABLE:FILEPATH=/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/build/venv/bin/python
+//C compiler flags for OpenMP parallelization
+OpenMP_C_FLAGS:STRING=NOTFOUND
+
+//C compiler libraries for OpenMP parallelization
+OpenMP_C_LIB_NAMES:STRING=NOTFOUND
 
 //Path to a library.
-PYTHON_LIBRARY:FILEPATH=/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/libpython3.13.dylib
+OpenMP_libomp_LIBRARY:FILEPATH=OpenMP_libomp_LIBRARY-NOTFOUND
 
-//No help, variable specified on the command line.
-Python3_EXECUTABLE:UNINITIALIZED=/opt/homebrew/Cellar/python@3.13/3.13.1/bin/python3
-
-//The directory containing a CMake configuration file for pybind11.
-pybind11_DIR:PATH=/opt/homebrew/share/cmake/pybind11
+//The directory containing a CMake configuration file for boost_headers.
+boost_headers_DIR:PATH=/opt/homebrew/lib/cmake/boost_headers-1.87.0
 
 
 ########################
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_DIR
+Boost_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -385,67 +392,22 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//Details about finding PYTHON
-FIND_PACKAGE_MESSAGE_DETAILS_PYTHON:INTERNAL=/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/build/venv/bin/python3.13.1
-//Details about finding Python
-FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[/opt/homebrew/Frameworks/Python.framework/Versions/3.13/bin/python3.13][/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13][/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/libpython3.13.dylib][/opt/homebrew/lib/python3.13/site-packages/numpy/_core/include][cfound components: Interpreter Development NumPy Development.Module Development.Embed ][v3.13.1()]
-//Details about finding PythonInterp
-FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/build/venv/bin/python][v3.13.1(3.7)]
-//Test HAS_FLTO_THIN
-HAS_FLTO_THIN:INTERNAL=1
-//Python executable during the last CMake run
-PYBIND11_PYTHON_EXECUTABLE_LAST:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions/3.13/bin/python3.13
-//ADVANCED property for variable: PYTHON_EXECUTABLE
-PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
-PYTHON_INCLUDE_DIRS:INTERNAL=/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13
-PYTHON_IS_DEBUG:INTERNAL=0
-PYTHON_LIBRARIES:INTERNAL=/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/libpython3.13.dylib
-//ADVANCED property for variable: PYTHON_LIBRARY
-PYTHON_LIBRARY-ADVANCED:INTERNAL=1
-PYTHON_MODULE_DEBUG_POSTFIX:INTERNAL=
-PYTHON_MODULE_EXTENSION:INTERNAL=.cpython-313-darwin.so
-PYTHON_MODULE_PREFIX:INTERNAL=
-PYTHON_VERSION:INTERNAL=3.13.1
-PYTHON_VERSION_MAJOR:INTERNAL=3
-PYTHON_VERSION_MINOR:INTERNAL=13
-Python_ADDITIONAL_VERSIONS:INTERNAL=3.12;3.11;3.10;3.9;3.8;3.7
-_PYBIND11_CROSSCOMPILING:INTERNAL=OFF
-_Python:INTERNAL=Python
-//Path to a program.
-_Python3_CONFIG:INTERNAL=_Python3_CONFIG-NOTFOUND
-//Compiler reason failure
-_Python3_Compiler_REASON_FAILURE:INTERNAL=
-_Python3_DEVELOPMENT_EMBED_SIGNATURE:INTERNAL=f981928d3ef8fb56ac6bfa974f33e0d0
-_Python3_DEVELOPMENT_MODULE_SIGNATURE:INTERNAL=53f42dea04d0bd5c9c53217e5de6a59c
-//Development reason failure
-_Python3_Development_REASON_FAILURE:INTERNAL=
-_Python3_EXECUTABLE:INTERNAL=/opt/homebrew/Cellar/python@3.13/3.13.1/bin/python3
-//Path to a file.
-_Python3_INCLUDE_DIR:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions/3.13/include/python3.13
-//Path to a library.
-_Python3_LIBRARY_RELEASE:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions/3.13/lib/libpython3.13.dylib
-//NumPy reason failure
-_Python3_NumPy_REASON_FAILURE:INTERNAL=
-//Compiler reason failure
-_Python_Compiler_REASON_FAILURE:INTERNAL=
-_Python_DEVELOPMENT_EMBED_SIGNATURE:INTERNAL=cb3fa249e86eedcf59e523c40fb802f3
-_Python_DEVELOPMENT_MODULE_SIGNATURE:INTERNAL=d67631b7e73c716cc71bd4f49624e9d1
-//Development reason failure
-_Python_Development_REASON_FAILURE:INTERNAL=
-//Path to a program.
-_Python_EXECUTABLE:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions/3.13/bin/python3.13
-//Path to a file.
-_Python_INCLUDE_DIR:INTERNAL=/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13
-//Python Properties
-_Python_INTERPRETER_PROPERTIES:INTERNAL=Python;3;13;1;64;<none>;cpython-313-darwin;abi3;/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/python3.13;/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/python3.13;/opt/homebrew/lib/python3.13/site-packages;/opt/homebrew/lib/python3.13/site-packages
-_Python_INTERPRETER_SIGNATURE:INTERNAL=7a1f714cc7198cb3c0d06752fabdd0bf
-//Interpreter reason failure
-_Python_Interpreter_REASON_FAILURE:INTERNAL=
-//Path to a library.
-_Python_LIBRARY_RELEASE:INTERNAL=/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/lib/libpython3.13.dylib
-_Python_NUMPY_SIGNATURE:INTERNAL=9d191a2282e0be78ddaa59e6c2932443
-//Path to a file.
-_Python_NumPy_INCLUDE_DIR:INTERNAL=/opt/homebrew/lib/python3.13/site-packages/numpy/_core/include
-//Directories where pybind11 and possibly Python headers are located
-pybind11_INCLUDE_DIRS:INTERNAL=/opt/homebrew/include;/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13
+//Details about finding Boost
+FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/opt/homebrew/lib/cmake/Boost-1.87.0/BoostConfig.cmake][c ][v1.87.0()]
+//Result of TRY_COMPILE
+OpenMP_COMPILE_RESULT_CXX_Xclang fopenmp:INTERNAL=FALSE
+//Result of TRY_COMPILE
+OpenMP_COMPILE_RESULT_C_Xclang fopenmp:INTERNAL=FALSE
+//ADVANCED property for variable: OpenMP_CXX_FLAGS
+OpenMP_CXX_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenMP_CXX_LIB_NAMES
+OpenMP_CXX_LIB_NAMES-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenMP_C_FLAGS
+OpenMP_C_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenMP_C_LIB_NAMES
+OpenMP_C_LIB_NAMES-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenMP_libomp_LIBRARY
+OpenMP_libomp_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_headers_DIR
+boost_headers_DIR-ADVANCED:INTERNAL=1
 

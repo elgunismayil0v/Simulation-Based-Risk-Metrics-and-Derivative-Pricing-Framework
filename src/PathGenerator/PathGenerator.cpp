@@ -43,6 +43,9 @@ vector<double> VarianceProcess::operator()() const {
                 double lambda = (numerator * samples[j]) / denominator;
                 boost::math::non_central_chi_squared_distribution<double> dist(delta, lambda);
                 double u = uniform_dist(rng);
+                if(u >= 1.0) {
+                    u = 1.0 - 1e-12;
+                }
                 double chi_sq_sample = quantile(dist, u);
                 samples[j + 1] = max(c * chi_sq_sample, 0.0);
             }
@@ -51,6 +54,7 @@ vector<double> VarianceProcess::operator()() const {
 
     return samples;
 }
+
 
 // Updated AssetPaths constructor initializes all members.
 AssetPaths::AssetPaths(double S0_, double rho_, double r_, int NoOfSteps_, double T_,
