@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(LongstaffSchwartzLSM)
+project(DerivativePricer)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 20)
@@ -19,11 +19,19 @@ include_directories(
 # Find Boost
 find_package(Boost REQUIRED)
 
+
 # Manually set the Boost include directory
 include_directories(/opt/homebrew/opt/boost/include)
 
 # Alternative:
 include_directories(${Boost_INCLUDE_DIRS})
+
+# Set Eigen include directory manually
+include_directories(/opt/homebrew/opt/eigen/include)
+
+# Alternatively, use find_package if Eigen provides a CMake config
+find_package(Eigen3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
 
 # Add source files for main executable
 set(SOURCE_FILES
@@ -45,6 +53,7 @@ set(SOURCE_FILES
     src/RiskMetrics/ExceptedExposure.cpp
     src/RiskMetrics/PotentialFutureExposure.cpp
     src/RiskMetrics/Cva.cpp
+    src/AmericanOption/AmericanOptionPricer.cpp
     
 )
 

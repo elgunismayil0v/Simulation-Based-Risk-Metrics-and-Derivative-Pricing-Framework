@@ -987,6 +987,7 @@ CMakeFiles/SimulationLib.dir/src/main.cpp.o: \
   /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/EuropeanTypeVanillaOptionPricer.h \
   /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/EuropeanOption.h \
   /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/EuropeanTypeLookBackOptionPricer.h \
+  /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/AmericanOptionPricer.h \
   /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/Exposure.h \
   /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/RiskMetrics.h \
   /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/include/ExceptedExposure.h \

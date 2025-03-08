@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o"
+  "CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o.d"
   "CMakeFiles/SimulationLib.dir/src/Asian/EuropeanTypeAsianOptionPricer.cpp.o"
   "CMakeFiles/SimulationLib.dir/src/Asian/EuropeanTypeAsianOptionPricer.cpp.o.d"
   "CMakeFiles/SimulationLib.dir/src/Barrier/EuropeanTypeBarrierDownInOptionPricer.cpp.o"

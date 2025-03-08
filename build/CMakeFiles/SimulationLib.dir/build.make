@@ -324,6 +324,20 @@ CMakeFiles/SimulationLib.dir/src/RiskMetrics/Cva.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SimulationLib.dir/src/RiskMetrics/Cva.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/src/RiskMetrics/Cva.cpp -o CMakeFiles/SimulationLib.dir/src/RiskMetrics/Cva.cpp.s
 
+CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o: CMakeFiles/SimulationLib.dir/flags.make
+CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o: /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/src/AmericanOption/AmericanOptionPricer.cpp
+CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o: CMakeFiles/SimulationLib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o -MF CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o.d -o CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o -c /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/src/AmericanOption/AmericanOptionPricer.cpp
+
+CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/src/AmericanOption/AmericanOptionPricer.cpp > CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.i
+
+CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/src/AmericanOption/AmericanOptionPricer.cpp -o CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.s
+
 # Object files for target SimulationLib
 SimulationLib_OBJECTS = \
 "CMakeFiles/SimulationLib.dir/src/main.cpp.o" \
@@ -343,7 +357,8 @@ SimulationLib_OBJECTS = \
 "CMakeFiles/SimulationLib.dir/src/RiskMetrics/Exposure.cpp.o" \
 "CMakeFiles/SimulationLib.dir/src/RiskMetrics/ExceptedExposure.cpp.o" \
 "CMakeFiles/SimulationLib.dir/src/RiskMetrics/PotentialFutureExposure.cpp.o" \
-"CMakeFiles/SimulationLib.dir/src/RiskMetrics/Cva.cpp.o"
+"CMakeFiles/SimulationLib.dir/src/RiskMetrics/Cva.cpp.o" \
+"CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o"
 
 # External object files for target SimulationLib
 SimulationLib_EXTERNAL_OBJECTS =
@@ -366,9 +381,10 @@ libSimulationLib.a: CMakeFiles/SimulationLib.dir/src/RiskMetrics/Exposure.cpp.o
 libSimulationLib.a: CMakeFiles/SimulationLib.dir/src/RiskMetrics/ExceptedExposure.cpp.o
 libSimulationLib.a: CMakeFiles/SimulationLib.dir/src/RiskMetrics/PotentialFutureExposure.cpp.o
 libSimulationLib.a: CMakeFiles/SimulationLib.dir/src/RiskMetrics/Cva.cpp.o
+libSimulationLib.a: CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o
 libSimulationLib.a: CMakeFiles/SimulationLib.dir/build.make
 libSimulationLib.a: CMakeFiles/SimulationLib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX static library libSimulationLib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX static library libSimulationLib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/SimulationLib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SimulationLib.dir/link.txt --verbose=$(VERBOSE)
 

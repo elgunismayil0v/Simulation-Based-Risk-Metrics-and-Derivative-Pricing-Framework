@@ -142,6 +142,30 @@ Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build.make CMakeFiles/Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework.dir/build
 .PHONY : Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework/fast
 
+src/AmericanOption/AmericanOptionPricer.o: src/AmericanOption/AmericanOptionPricer.cpp.o
+.PHONY : src/AmericanOption/AmericanOptionPricer.o
+
+# target to build an object file
+src/AmericanOption/AmericanOptionPricer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.o
+.PHONY : src/AmericanOption/AmericanOptionPricer.cpp.o
+
+src/AmericanOption/AmericanOptionPricer.i: src/AmericanOption/AmericanOptionPricer.cpp.i
+.PHONY : src/AmericanOption/AmericanOptionPricer.i
+
+# target to preprocess a source file
+src/AmericanOption/AmericanOptionPricer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.i
+.PHONY : src/AmericanOption/AmericanOptionPricer.cpp.i
+
+src/AmericanOption/AmericanOptionPricer.s: src/AmericanOption/AmericanOptionPricer.cpp.s
+.PHONY : src/AmericanOption/AmericanOptionPricer.s
+
+# target to generate assembly for a file
+src/AmericanOption/AmericanOptionPricer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulationLib.dir/build.make CMakeFiles/SimulationLib.dir/src/AmericanOption/AmericanOptionPricer.cpp.s
+.PHONY : src/AmericanOption/AmericanOptionPricer.cpp.s
+
 src/Asian/EuropeanTypeAsianOptionPricer.o: src/Asian/EuropeanTypeAsianOptionPricer.cpp.o
 .PHONY : src/Asian/EuropeanTypeAsianOptionPricer.o
 
@@ -587,6 +611,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Simulation-Based-Risk-Metrics-and-Option-Pricing-Framework"
 	@echo "... SimulationLib"
+	@echo "... src/AmericanOption/AmericanOptionPricer.o"
+	@echo "... src/AmericanOption/AmericanOptionPricer.i"
+	@echo "... src/AmericanOption/AmericanOptionPricer.s"
 	@echo "... src/Asian/EuropeanTypeAsianOptionPricer.o"
 	@echo "... src/Asian/EuropeanTypeAsianOptionPricer.i"
 	@echo "... src/Asian/EuropeanTypeAsianOptionPricer.s"
