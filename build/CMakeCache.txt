@@ -143,7 +143,7 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 
 //The product will be built against the headers and libraries located
 // inside the indicated SDK.
-CMAKE_OSX_SYSROOT:PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk
+CMAKE_OSX_SYSROOT:PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk
 
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
@@ -230,15 +230,6 @@ DerivativePricer_SOURCE_DIR:STATIC=/Users/elgun/desktop/Simulation-Based-Risk-Me
 
 //The directory containing a CMake configuration file for Eigen3.
 Eigen3_DIR:PATH=/opt/homebrew/share/eigen3/cmake
-
-//Value Computed by CMake
-LongstaffSchwartzLSM_BINARY_DIR:STATIC=/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw/build
-
-//Value Computed by CMake
-LongstaffSchwartzLSM_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-LongstaffSchwartzLSM_SOURCE_DIR:STATIC=/Users/elgun/desktop/Simulation-Based-Risk-Metrics-and-Option-Pricing-Frameworw
 
 //CXX compiler flags for OpenMP parallelization
 OpenMP_CXX_FLAGS:STRING=NOTFOUND

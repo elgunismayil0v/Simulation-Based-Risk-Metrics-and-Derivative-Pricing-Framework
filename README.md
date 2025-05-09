@@ -1,7 +1,7 @@
 
 # Heston and LMM_DD Models with Monte Carlo Simulation
 
-This project implements the **Heston stochastic volatility model** and the **LMM_DD model** for financial derivatives pricing using Monte Carlo simulation. It also provides risk metrics calculations such as **Expected Exposure (EE)**, **Potential Future Exposure (PFE)**, and **Credit Valuation Adjustment (CVA)** for both models.
+This project implements the **Heston stochastic volatility model** for financial derivatives pricing using Monte Carlo simulation. It also provides risk metrics calculations such as **Expected Exposure (EE)**, **Potential Future Exposure (PFE)**, and **Credit Valuation Adjustment (CVA)** for both models.
 
 ## Features
 
@@ -9,10 +9,7 @@ This project implements the **Heston stochastic volatility model** and the **LMM
 - Simulates asset price paths using the Heston model with stochastic volatility.
 - Implements the Cox-Ingersoll-Ross (CIR) process for variance dynamics.
 - Calculates European call option prices via Monte Carlo methods.
-  
-### LMM_DD Model
-- Simulates forward rates using the LMM_DD model.
-- Calculates the prices of caplets and swap options.
+
 
 ### Risk Metrics Calculations
 - **Expected Exposure (EE)**: Average exposure over time.
@@ -68,26 +65,15 @@ This project implements the **Heston stochastic volatility model** and the **LMM
 
 The program provides the following metrics for both models:
 
-- **Caplet Price** (LMM_DD)
-- **Swap Option Price** (LMM_DD)
 - **European Call Option Price** (Heston)
 - **Discounted Expected Exposure (EE)**
 - **Potential Future Exposure (PFE)**
 - **Credit Valuation Adjustment (CVA)**
 - **Risky Derivative Prices**:
-  - Caplet Price minus CVA
-  - Swap Option Price minus CVA
   - European Call Price minus CVA
 
 ### Sample Output
 ```
-Caplet price: 0.0245
-Swap option price: 0.0357
-Discounted Expected Exposure: 0.0012
-Potential Future Exposure: 0.0025
-CVA: 0.0008
-Risky Derivative Price of Caplet: 0.0237
-Risky Derivative Price of Swap Option: 0.0349
 European call price: 10.1234
 Discounted Expected Exposure: 4.5678
 Potential Future Exposure: 6.1234
@@ -101,9 +87,6 @@ Risky Derivative Price of European Call Option: 9.3344
   - Implements variance simulation using the CIR model.
   - Simulates asset price paths under the Heston model.
   - Calculates European call option prices.
-- **LMM_DD Class**:
-  - Simulates forward rates.
-  - Calculates caplet and swap option prices.
 - **RiskMetrics Class**:
   - Computes risk measures (EE, PFE, CVA) from simulated paths.
 
